@@ -5,6 +5,7 @@ import { Loader, GraduationCap, User } from "lucide-react";
 import { useAuth } from "./store/customHooks";
 import { showError } from "../../utils/toast";
 import type { LoginPayload } from "../../types/auth";
+import { Meteors } from "../../lib/components/ui/meteors";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -35,7 +36,8 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-700">
+      <div className="max-w-md w-full space-y-8 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-700 relative overflow-hidden">
+        <Meteors number={100} />
         <div className="flex flex-col items-center">
           {/* Icon color dynamically changes based on loginType using custom colors */}
           {loginType === "scholar" ? (
@@ -181,6 +183,8 @@ const Login = () => {
             >
               Forgot Password?
             </Link>
+          
+                    
           </div>
         </form>
       </div>
