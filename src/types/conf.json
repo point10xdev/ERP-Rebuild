@@ -1,0 +1,148 @@
+{
+    "college": {
+        "departments": {
+            "CSE": "Computer Science and Engineering",
+            "IT": "Information Technology",
+            "MECH": "Mechanical Engineering",
+            "CHE": "Chemical Engineering",
+            "CHEM": "Chemistry",
+            "CIVIL": "Civil Engineering",
+            "ECE": "Electronics and Communication Engineering",
+            "EE": "Electrical Engineering",
+            "MATH": "Mathematics",
+            "MET": "Materials and Metallurgical Engineering",
+            "PHY": "Physics",
+            "HSSM": "Humanities Social Sciences and Management"
+        },
+        "administrative_units": {
+            "ERP": "ERP",
+            "PLD": "Planning and Development",
+            "PERS": "Personnel Department",
+            "ADMIN": "Administration",
+            "ACCTS": "Accounts",
+            "CWS": "Central Workshop",
+            "CSC": "Computer Service Centre",
+            "CRF": "Central Research Facility Centre",
+            "ACAD": "Academic Affairs",
+            "MED": "Medical Unit",
+            "TPC": "Training and Placement Cell",
+            "REG": "Registrar Office",
+            "WRC": "Water Resources Centre",
+            "MESS": "Mess office",
+            "LIB": "Library",
+            "LEGAL": "Legal Cell",
+            "EXAM": "Examination",
+            "EMD": "Electrical Maintenance Division",
+            "HOSTEL": "Hostel Office",
+            "SPORTS": "Sports and Student Activities",
+            "CPU": "Central Purchase Unit",
+            "SEC": "Security",
+            "SAN": "Sanitation",
+            "COMP": "Compilation Section",
+            "STP": "Stationary and Printing",
+            "DIR": "Direction Office"
+        },
+        "roles": {
+            "FAC": "Faculty",
+            "HOD": "Head of the Department",
+            "AD": "Accociate Dean",
+            "DEAN": "Dean",
+            "AC": "Accounts",
+            "scholar": "Scholar"
+        },
+        "university": {
+            "NIT-Sri": "National Institute of Technology Srinagar"
+        },
+        "course": {
+            "B-Tech": "Bachelor of Technology",
+            "M-Tech": "Master of Technology",
+            "PHd": "Doctor of Philosophy"
+        }
+    },
+    "admission_category": {
+        "SPON": "Sponsored",
+        "INST_FEL": "Institute Fellowship",
+        "OPEN": "Open",
+        "SELF_FIN": "Self Financed",
+        "EWS": "EWS",
+        "TEQIP_FAC": "TEQIP Faculty",
+        "OBC": "OBC",
+        "INS_DST": "Inspire DST Project",
+        "SELF_SPON": "Self Sponsored",
+        "QIP": "QIP",
+        "ST": "ST",
+        "OPEN_SPON": "Open (Sponsored)",
+        "PWD": "PwD",
+        "SPON_PROJ": "Sponsored Project",
+        "PHD_INT": "Ph.D. Internal",
+        "SPON_CSIR": "Sponsored (UGC-CSIR-JRF)",
+        "SPON_JRF": "Sponsored UGC-JRF",
+        "DST_INS": "DST INSPIRE",
+        "SPON_SERB": "Sponsored JRF SERB Project",
+        "INT_SPON": "Internal Sponsored",
+        "SPON_JKSTIC": "Soponsord JKSTIC Project JRF",
+        "SPON_NFSC": "Sponsored UGC-NFSC",
+        "TEQIP": "TEQIP",
+        "SPON_AWADH": "Sponsored Awadh Project",
+        "SPON_INSP": "Sponsored- Inspire Fellow",
+        "JRF_OPEN": "JRF (OPEN)",
+        "OTHERS": "others"
+    },
+    "type_of_work": {
+        "FT": "Full Time",
+        "PT": "Part Time"
+    },
+    "type_of_employee": {
+        "T": "Teaching",
+        "NT": "Non-Teaching"
+    },
+    "designation": {
+        "PROF": "Professor",
+        "ASSOC_PROF": "Associate Professor",
+        "ASST_PROF": "Assistant Professor",
+        "ASST_REGISTRAR": "Assistant Registrar",
+        "DEPUTY_REGISTRAR": "Deputy Registrar",
+        "ASST_LIBRARIAN": "Assistant Librarian",
+        "DEPUTY_LIBRARIAN": "Deputy Librarian",
+        "DIRECTOR": "Director",
+        "TECHNICAL_OFFICER": "Technical Officer",
+        "SCIENTIFIC_TECHNICAL_OFFICER": "Scientific/Technical Officer",
+        "SR_TECHNICIAN": "Sr. Technician",
+        "TECHNICIAN": "Technician",
+        "TECH_ASST": "Technical Assistant",
+        "SR_TECHNICAL_ASST": "Senior Technical Assistant",
+        "JR_ENGINEER": "Junior Engineer",
+        "SR_EXEC_ENGINEER": "Sr. Executive Engg.",
+        "SAS_OFFICER": "SAS OFFICER",
+        "ASST_SECURITY_OFFICER": "Assistant Security Officer",
+        "PHARMACIST": "Pharmacist",
+        "PRIVATE_SECRETARY": "Private Secretary",
+        "STENOGRAPHER": "Stenographer",
+        "SUPERINTENDENT": "Superintendent",
+        "JR_ASST": "Junior Assistant",
+        "SR_ASST": "Senior Assistant",
+        "ASST_GRADE_I": "Assistant Grade I",
+        "SR_MEDICAL_OFFICER": "Sr Medical officer",
+        "OTHERS": "Others"
+    },
+    "nature_of_employment": {
+        "PERM": "Permanent",
+        "TEMP": "Temporary"
+    },
+    "status": {
+        "0": "Rejected",
+        "1": "Accepted",
+        "2": "Pending"
+    },
+    "gender": {
+        "M": "Male",
+        "F": "Female"
+    },
+    "research_category": {
+        "JRF": "Junior Research Fellow",
+        "SRF": "Senior Research Fellow",
+        "RA": "Research Associate"
+    },
+    "frontend": "http://localhost:5173",
+    "backend": "http://localhost:8000"
+}
