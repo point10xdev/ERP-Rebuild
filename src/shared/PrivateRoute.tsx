@@ -3,7 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../features/auth/store/customHooks";
 import { ROUTES } from "../app/routes";
-import { PrivateRouteProps } from "../types/auth";
+import type { PrivateRouteProps } from "../types/auth";
 
 /**
  * Props for the PrivateRoute component

@@ -9,11 +9,11 @@ import { showSuccess, showError } from "../../utils/toast";
 // Mapping backend roles to user-friendly display names
 const roleDisplayMap: Record<Role, string> = {
   FAC: "Faculty",
-  HOD: "HOD", 
+  HOD: "HOD",
   AD: "Associate Dean",
   DEAN: "Dean",
   AC: "Accounts",
-  scholar: "Scholar", 
+  scholar: "Scholar",
 };
 
 // Custom Tooltip
@@ -37,14 +37,14 @@ const Tooltip = ({
 
 export const Header = () => {
   // Use only the useAuth hook - it handles everything through authService
-  const { 
-    user, 
-    loading, 
-    selectedRole, 
-    setSelectedRole, 
+  const {
+    user,
+    loading,
+    selectedRole,
+    setSelectedRole,
     logout // Use logout from the hook instead of direct authService call
-  } = useAuth(); 
-  
+  } = useAuth();
+
   const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -71,13 +71,13 @@ export const Header = () => {
 
   const handleLogout = async () => {
     if (isLoggingOut) return; // Prevent multiple logout attempts
-    
+
     setIsLoggingOut(true);
-    
+
     try {
       // Use logout from useAuth hook - it handles authService call + state clearing
       await logout();
-      
+
       showSuccess("Logged out successfully");
       navigate("/", { replace: true });
     } catch (error) {
@@ -119,16 +119,17 @@ export const Header = () => {
                       e.stopPropagation();
                       setIsOpen(!isOpen);
                     }}
-                    className="flex items-center px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-all"
+                    // Adjusted padding and font size for larger button
+                    className="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-all"
                   >
                     {selectedRole
                       ? roleDisplayMap[selectedRole] || selectedRole
                       : "Select Role"}
-                    <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-5 h-5 ml-2 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
 
                   {isOpen && (
-                    <ul className="absolute left-0 mt-2 w-36 bg-white dark:bg-gray-800 shadow-lg rounded-lg z-50 border dark:border-gray-700">
+                    <ul className="absolute left-0 mt-2 w-44 bg-white dark:bg-gray-800 shadow-lg rounded-lg z-50 border dark:border-gray-700">
                       {roles.map((role) => (
                         <li
                           key={role}
@@ -136,7 +137,8 @@ export const Header = () => {
                             e.stopPropagation();
                             handleSelect(role);
                           }}
-                          className={`px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 first:rounded-t-lg last:rounded-b-lg ${
+                          // Adjusted padding and font size for larger list items
+                          className={`px-5 py-2.5 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 first:rounded-t-lg last:rounded-b-lg ${
                             role === selectedRole
                               ? "font-semibold bg-gray-100 dark:bg-gray-700"
                               : ""
@@ -149,7 +151,7 @@ export const Header = () => {
                   )}
                 </>
               ) : (
-                <span className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-lg">
+                <span className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 rounded-lg">
                   Scholar
                 </span>
               )}
@@ -196,8 +198,8 @@ export const Header = () => {
                       isLoggingOut ? 'opacity-50 cursor-not-allowed' : ''
                     }`}
                   >
-                    <LogOut 
-                      className={`w-5 h-5 ${isLoggingOut ? 'animate-spin' : ''}`} 
+                    <LogOut
+                      className={`w-5 h-5 ${isLoggingOut ? 'animate-spin' : ''}`}
                     />
                   </button>
                 </Tooltip>

@@ -1,18 +1,18 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import { AuthInitializer } from "../features/auth/store/AuthInitializer";
-// import { PrivateRoute } from "../shared/components/PrivateRoute";
+import { PrivateRoute } from "../shared/PrivateRoute";
 
 import { DarkModeProvider } from "../shared/DarkMode/DarkModeContext";
 
 import { PublicLayout } from "../shared/layouts/PublicLayout";
-// import { DashboardLayout } from "../shared/layouts/dashboard";
+import { DashboardLayout } from "../shared/layouts/DashboardLayout";
 
 import Login from "../features/auth/Login";
 // import {  ResetPassword, ResetPasswordForm, SetPasswordForm } from "../features/auth";
 
 
-// import { HomePage } from "../features/dashboard/Home";
+import { HomePage } from "../features/dashboard/Home";
 // import { ProfileRouter } from "../features/profile";
 
 // import { MyStudentsPage } from "../features/faculty/myStudents/MyStudents";
@@ -72,7 +72,7 @@ function App() {
               }
             /> */}
 
-            {/* Dashboard routes - flat structure
+            Dashboard routes - flat structure
             <Route
               path={ROUTES.DASHBOARD}
               element={
@@ -84,7 +84,7 @@ function App() {
               }
             />
 
-            <Route
+            {/* <Route
               path={ROUTES.MY_PROFILE}
               element={
                 <PrivateRoute>

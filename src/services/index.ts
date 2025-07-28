@@ -1,9 +1,9 @@
 import axios from "axios";
 import config from "../types/conf.json";
 import { logMessage } from "../utils/logger";
-import { LoginPayload } from "../types/auth";
-import { Role } from "../types/roles";
-import { PostScholarshipPayload } from "../types/apiType";
+import type { LoginPayload } from "../types/auth";
+import type { Role } from "../types/roles";
+import type { PostScholarshipPayload } from "../types/apiType";
 const API = axios.create({
   baseURL: `${config.backend}/api`,
 });
