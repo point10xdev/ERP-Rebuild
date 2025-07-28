@@ -15,6 +15,13 @@ interface StatCardProps {
   count: number;
   icon: string;
   active?: boolean;
+  selectedRole: string; // Added selectedRole prop
+}
+
+// Define NoticeProps interface as it was missing
+interface NoticeProps {
+  title: string;
+  content: string;
 }
 
 const getFormattedDate = (): string => {
@@ -26,13 +33,13 @@ const getFormattedDate = (): string => {
     year: "numeric",
   });
 };
+
 const getRemainingDays = () => {
   const today = new Date();
   const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
   const diffTime = endOfMonth.getTime() - today.getTime();
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 };
-const remainingDays = getRemainingDays();
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -42,6 +49,37 @@ export const HomePage: React.FC = () => {
   const [supervisors, setSupervisors] = useState([]);
   const [stats, setStats] = useState<StatCardProps[]>([]);
   const [hasCurrentScholarship, setHasCurrentScholarship] = useState(false);
+
+  // Determine role-specific colors
+  const getRoleColors = (role: string) => {
+    if (role === "scholar") {
+      return {
+        primary: "stu-pri", // blue-600
+        primaryHover: "stu-pri-hover", // blue-700
+        primaryHoverLight: "stu-pri-hover-light", // blue-500
+        secondary: "stu-sec", // indigo-500
+        secondaryLight: "stu-sec-light", // indigo-300
+        accent: "stu-acc", // rose-500
+        accentHex: "#eafc83", // Direct hex for accent
+        pieColors: ['#2563EB', '#6366F1', '#F43F5E'] // Hex values for Recharts
+      };
+    } else { // faculty
+      return {
+        primary: "fac-pri", // violet-600
+        primaryHover: "fac-pri-hover", // violet-700
+        primaryHoverLight: "fac-pri-hover-light", // violet-500
+        secondary: "fac-sec", // sky-500
+        secondaryLight: "fac-sec-light", // sky-300
+        accent: "fac-acc", // cyan-400
+        accentHex: "#fe9496", // Direct hex for accent
+        pieColors: ['#7C3AED', '#0EA5E9', '#DA458B'] // Hex values for Recharts
+      };
+    }
+  };
+
+  const roleColors = getRoleColors(selectedRole);
+  const remainingDays = getRemainingDays();
+
 
   useEffect(() => {
     if (!user?.id) return;
@@ -61,8 +99,6 @@ export const HomePage: React.FC = () => {
       }
     };
 
-    
-
     // Fetch scholarship stats depending on user role
     const fetchScholarshipStats = async () => {
       try {
@@ -80,16 +116,19 @@ export const HomePage: React.FC = () => {
               title: "Total",
               count: totalRes?.scholarships?.length || 0,
               icon: "✅",
+              selectedRole: selectedRole, // Pass selectedRole
             },
             {
               title: "Pending",
               count: pendingRes?.scholarships?.length || 0,
               icon: "⏳",
+              selectedRole: selectedRole, // Pass selectedRole
             },
             {
               title: "Unreleased",
               count: currentRes?.scholarships?.length || 0,
               icon: "🕒",
+              selectedRole: selectedRole, // Pass selectedRole
             },
           ]);
 
@@ -114,16 +153,19 @@ export const HomePage: React.FC = () => {
               title: "All Students",
               count: totalRes?.scholarships?.length || 0,
               icon: "✅",
+              selectedRole: selectedRole, // Pass selectedRole
             },
             {
               title: "Pending Review",
               count: pendingRes?.scholarships?.length || 0,
               icon: "⏳",
+              selectedRole: selectedRole, // Pass selectedRole
             },
             {
               title: "Need My Approval",
               count: currentRes?.scholarships?.length || 0,
               icon: "🕒",
+              selectedRole: selectedRole, // Pass selectedRole
             },
           ]);
 
@@ -144,22 +186,24 @@ export const HomePage: React.FC = () => {
     value: stat.count,
   }));
 
-  // Colors for the pie chart slices
-  const COLORS = ['#8884d8', '#82ca9d', '#ffc658'];
-  
+  // Colors for the pie chart slices, now dynamic
+  const PIE_COLORS = roleColors.pieColors;
+
   return (
-     <div className="px-10 py-8 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
-      <div className="flex items-center justify-between bg-purple-600 dark:bg-purple-700 rounded-2xl p-8 shadow-lg hover:shadow-xl hover:scale-[1.005] transition-all duration-300 border border-gray-200 dark:border-none">
+    <div className="px-10 py-8 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
+      {/* Welcome back banner */}
+      <div className={`flex items-center justify-between bg-${roleColors.primary} dark:bg-${roleColors.primaryHover} rounded-2xl p-8 shadow-lg hover:shadow-xl hover:scale-[1.005] transition-all duration-300 border border-gray-200 dark:border-none`}>
         <div className="flex flex-col">
-          <p className="text-sm mb-1">{getFormattedDate()}</p>
+          <p className="text-sm mb-1 text-white">{getFormattedDate()}</p>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="text-3xl font-bold mt-2"
           >
-            Welcome back,{" "}
-            <span className="text-purple-300">
+            <span className="text-white">Welcome back,{" "}</span>
+            {/* Applied accent color directly using style prop */}
+            <span style={{ color: roleColors.accentHex }}>
               <Typewriter
                 words={[user?.name || "NULL"]}
                 cursor
@@ -171,7 +215,7 @@ export const HomePage: React.FC = () => {
             </span>
           </motion.h1>
 
-          <p className="text-sm text-purple-200">
+          <p className={`text-sm text-white`}>
             Always stay updated in your student portal
           </p>
         </div>
@@ -183,58 +227,53 @@ export const HomePage: React.FC = () => {
           /> */}
         </div>
       </div>
-            
+
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Left (2/3) */}
         <div className="lg:col-span-2 space-y-10">
-          {/* Scholarship Stats */}
-          {/* <div>
-            <h2 className="text-xl font-semibold mb-4">Scholarship Summary</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              {stats.map((stat, idx) => (
-                <StatCard
-                  key={idx}
-                  title={stat.title}
-                  count={stat.count}
-                  icon={stat.icon}
-                  active={stat.active}
-                />
-              ))} */}
-{/* Pie Chart Section (replaces Scholarship Stats) - ONLY CHANGES HERE */}
+          {/* Donut Chart Section */}
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-700">
-            <h2 className="text-xl font-semibold mb-4">Scholarship Summary</h2> {/* Kept original h2 classes */}
-            <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between h-72"> {/* Adjusted height and flex for layout */}
-                <div className="w-full md:w-2/3 h-full"> {/* Chart occupies 2/3 width on medium screens */}
+            <h2 className="text-xl font-semibold mb-4">Scholarship Summary</h2>
+            <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between h-72">
+                <div className="w-full md:w-2/3 h-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
+                            <defs>
+                                {/* Define gradients dynamically based on PIE_COLORS */}
+                                {PIE_COLORS.map((color, index) => (
+                                    <linearGradient key={`grad-${index}`} id={`colorUv${index}`} x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor={color} stopOpacity={1}/>
+                                        <stop offset="95%" stopColor={color} stopOpacity={0.8}/>
+                                    </linearGradient>
+                                ))}
+                            </defs>
+                            <Tooltip />
                             <Pie
                                 data={pieChartData}
                                 cx="50%"
                                 cy="50%"
-                                labelLine={false}
-                                outerRadius={80} // Adjust outerRadius for size
+                                innerRadius={50} // Added for donut chart
+                                outerRadius={80}
                                 fill="#8884d8"
                                 dataKey="value"
-                                // Removed the label prop here to prevent cutoff/overlap
                             >
                                 {pieChartData.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                    <Cell key={`cell-${index}`} fill={`url(#colorUv${index})`} />
                                 ))}
                             </Pie>
-                            <Tooltip /> {/* Tooltip for showing values on hover */}
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
-                <div className="w-full md:w-1/3 flex flex-col items-center md:items-start justify-center md:justify-start mt-4 md:mt-0 md:ml-4"> {/* Legend section occupies 1/3 width */}
-                    <h3 className="text-lg font-medium mb-2 text-gray-900 dark:text-white">Legend</h3> {/* Kept default text color, can be adjusted */}
+                <div className="w-full md:w-1/3 flex flex-col items-center md:items-start justify-center md:justify-start mt-4 md:mt-0 md:ml-4">
+                    <h3 className="text-lg font-medium mb-2 text-gray-900 dark:text-white">Legend</h3>
                     {pieChartData.map((entry, index) => (
                         <div key={entry.name} className="flex items-center mb-1">
                             <span
                                 className="inline-block w-4 h-4 rounded-full mr-2"
-                                style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                                style={{ backgroundColor: PIE_COLORS[index % PIE_COLORS.length] }}
                             ></span>
-                            <span className="text-gray-900 dark:text-gray-300 text-sm">{entry.name}</span> {/* Kept default text color, can be adjusted */}
+                            <span className="text-gray-900 dark:text-gray-300 text-sm">{entry.name} : {entry.value}</span>
                         </div>
                     ))}
                 </div>
@@ -248,13 +287,13 @@ export const HomePage: React.FC = () => {
                 Scholarship Notifications
               </h2>
 
-              <div className="bg-gray-800 rounded-xl shadow p-4 transition relative overflow-hidden">
+              <div className={` bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-xl shadow p-4 transition relative overflow-hidden`}>
                 <div
                   className="flex items-center justify-between cursor-pointer"
                   onClick={() => setOpen((prev) => !prev)}
                 >
                   <div>
-                    <h3 className="text-white text-base font-semibold">
+                    <h3 className=" hover:bg-gray-100  dark:hover:bg-gray-700 text-base font-semibold">
                       🎓 Unreleased Scholarships Found
                     </h3>
                   </div>
@@ -267,9 +306,9 @@ export const HomePage: React.FC = () => {
                       {remainingDays} days left
                     </span>
                     {open ? (
-                      <ChevronUp size={18} className="text-purple-300" />
+                      <ChevronUp size={18} className={`text-${roleColors.secondaryLight}`} />
                     ) : (
-                      <ChevronDown size={18} className="text-purple-300" />
+                      <ChevronDown size={18} className={`text-${roleColors.secondaryLight}`} />
                     )}
                   </div>
                 </div>
@@ -282,7 +321,7 @@ export const HomePage: React.FC = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
-                      className="mt-4 inline-block mx-auto bg-purple-700 hover:bg-purple-600 rounded-md px-4 py-2 text-sm font-medium text-white cursor-pointer text-center"
+                      className={`mt-4 inline-block mx-auto text-white  bg-fac-pri-hover-light hover:bg-fac-pri-hover-light rounded-md px-4 py-2 text-sm font-medium  cursor-pointer text-center`}
                       onClick={() =>
                         navigate(
                           selectedRole === "scholar"
@@ -316,13 +355,13 @@ export const HomePage: React.FC = () => {
                     delay: idx * 0.1, // 👈 stagger animation
                     ease: "easeOut",
                   }}
-                  className="aspect-square flex flex-col items-center justify-center text-center bg-gray-800 p-3 rounded-xl shadow hover:bg-gray-700 transition"
+                  className={`aspect-square flex flex-col items-center justify-center text-center p-3 rounded-xl shadow transition bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700`}
                 >
                   <img
                     src={`${conf.backend}${sup.src}`}
                     alt={sup.name}
                     onError={(e) => (e.currentTarget.src = photo)}
-                    className="w-24 h-24 rounded-full object-cover border-2 border-purple-500 mb-4"
+                    className={`w-24 h-24 rounded-full object-cover border-2 border-${roleColors.primary} mb-4`}
                   />
                   <p className="text-sm font-medium">{sup.name}</p>
                   <p className="text-xs text-gray-400">{sup.role}</p>
@@ -339,7 +378,7 @@ export const HomePage: React.FC = () => {
                 See all
               </button> */}
             </div>
-            <div className="bg-gray-800 rounded-xl p-5 space-y-4">
+            <div className={`bg-${roleColors.primaryHover} rounded-xl p-5 space-y-4`}>
               <Notice
                 title="Beta Version Notice"
                 content="The site is under beta version. Developers are working to improve the site. Please provide any bugs or suggestions using the feedback form."
@@ -353,22 +392,43 @@ export const HomePage: React.FC = () => {
 };
 
 // Components
-const StatCard: React.FC<StatCardProps> = ({ title, count, icon, active }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.4, ease: "easeOut" }}
-    className={`bg-gray-800 text-center py-10 px-4 rounded-xl shadow border border-gray-700 hover:bg-gray-700 transition ${
-      active
-        ? "bg-purple-800 border-2 border-purple-500 scale-[1.02]"
-        : "bg-gray-800"
-    }`}
-  >
-    {/* <div className="text-4xl mb-3">{icon}</div> */}
-    <div className="text-5xl font-extrabold text-white mb-1">{count}</div>
-    <div className="text-sm text-gray-400">{title}</div>
-  </motion.div>
-);
+const StatCard: React.FC<StatCardProps> = ({ title, count, icon, active, selectedRole }) => {
+  const getRoleColors = (role: string) => {
+    if (role === "scholar") {
+      return {
+        primary: "stu-pri",
+        primaryHover: "stu-pri-hover",
+        secondary: "stu-sec",
+        accent: "stu-acc",
+      };
+    } else { // faculty
+      return {
+        primary: "fac-pri",
+        primaryHover: "fac-pri-hover",
+        secondary: "fac-sec",
+        accent: "fac-acc",
+      };
+    }
+  };
+  const roleColors = getRoleColors(selectedRole);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={`bg-${roleColors.primaryHover} text-center py-10 px-4 rounded-xl shadow border border-${roleColors.secondary} hover:bg-${roleColors.primary} transition ${
+        active
+          ? `bg-${roleColors.primary} border-2 border-${roleColors.accent} scale-[1.02]`
+          : ""
+      }`}
+    >
+      {/* <div className="text-4xl mb-3">{icon}</div> */}
+      <div className="text-5xl font-extrabold text-white mb-1">{count}</div>
+      <div className="text-sm text-gray-400">{title}</div>
+    </motion.div>
+  );
+};
 
 const Notice: React.FC<NoticeProps> = ({ title, content }) => (
   <motion.div

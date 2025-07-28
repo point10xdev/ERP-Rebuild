@@ -55,25 +55,26 @@ export const Sidebar = () => {
   const isStudentRole = !roles || roles.length === 0;
 
   // Function to determine active class for navigation links
+  // It now returns an object with both the class string and the active state
   const getActiveClass = (path: string, currentRole: Role | null) => {
     const isActivePath = location.pathname === path || location.pathname.startsWith(path);
+    let classString = "";
 
-    if (!isActivePath) {
-      return "";
+    if (isActivePath) {
+      if (currentRole && ["FAC", "HOD", "AD", "DEAN", "AC"].includes(currentRole)) {
+        classString = "bg-fac-pri text-white dark:bg-fac-pri-hover";
+      } else {
+        classString = "bg-stu-pri text-white dark:bg-stu-pri-hover";
+      }
     }
-
-    // Apply faculty-specific or student-specific active styles
-    if (currentRole && ["FAC", "HOD", "AD", "DEAN", "AC"].includes(currentRole)) {
-      return "bg-fac-pri text-white dark:bg-fac-pri-hover";
-    } else {
-      return "bg-stu-pri text-white dark:bg-stu-pri-hover";
-    }
+    return { isActive: isActivePath, class: classString };
   };
 
   // Function to determine hover class for navigation links
-  const getHoverClass = () => {
-    // MODIFICATION: Always return the requested hover class
-    return "hover:bg-gray-100 dark:hover:bg-gray-700";
+  // It now accepts an 'isActive' boolean
+  const getHoverClass = (isActive: boolean) => {
+    // Only return the hover class if the link is NOT active
+    return isActive ? "" : "hover:bg-gray-100 dark:hover:bg-gray-700";
   };
 
   // Role-based access control for sidebar items
@@ -94,14 +95,11 @@ export const Sidebar = () => {
       : "text-stu-pri dark:text-stu-pri-hover-light";
 
   // CSS classes for text transition when sidebar collapses/expands
-  // MODIFICATION: Removed transition and delay for instant changes
   const getTextTransitionClasses = (isCollapsedState: boolean) =>
     `whitespace-nowrap ${isCollapsedState ? "opacity-0 max-w-0" : "opacity-100 max-w-full"}`;
 
-
   return (
     <div
-      // ADDED: transition-all duration-300 ease-in-out for smooth light/dark mode changes
       className={`bg-white dark:bg-gray-800 border-r dark:border-gray-700 min-h-screen transition-all duration-300 ease-in-out flex flex-col ${
         isVisuallyCollapsed ? "w-20" : "w-72"
       }`}
@@ -112,18 +110,15 @@ export const Sidebar = () => {
         {/* AlignJustify icon now acts as the toggle button */}
         <button
           onClick={toggleSidebar}
-          // Increased padding to accommodate larger icon
           className="p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
           title={isManuallyCollapsed ? "Keep Menu Expanded" : "Collapse Menu"}
         >
-          {/* Increased icon size from w-5 h-5 to w-6 h-6 */}
           <AlignJustify className={`w-6 h-6 flex-none ${baseIconTextColor}`} />
         </button>
 
         {/* "Menu" text linking to Dashboard, always rendered for smooth transition */}
         <Link
           to={ROUTES.DASHBOARD}
-          // Use 'isVisuallyCollapsed' here
           className={`flex items-center space-x-2 flex-1 ml-2 overflow-hidden
             ${baseIconTextColor} ${getTextTransitionClasses(isVisuallyCollapsed)}
           `}
@@ -134,98 +129,109 @@ export const Sidebar = () => {
 
       <nav className="mt-8 px-4 flex-1 space-y-2">
         {/* Dashboard Link */}
-        <Link
-          to={ROUTES.DASHBOARD}
-          // Increased padding to accommodate larger icon
-          className={`flex items-center gap-2 p-4 rounded-lg ${getActiveClass(ROUTES.DASHBOARD, selectedRole)}
-            ${getHoverClass()} overflow-hidden
-          `}
-          title="Home"
-        >
-          {/* Increased icon size from w-5 h-5 to w-6 h-6 */}
-          <Home className="w-6 h-6 flex-none" />
-          {/* Use 'isVisuallyCollapsed' here */}
-          <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
-            Dashboard
-          </span>
-        </Link>
+        {(() => {
+          const { isActive, class: activeClass } = getActiveClass(ROUTES.DASHBOARD, selectedRole);
+          return (
+            <Link
+              to={ROUTES.DASHBOARD}
+              className={`flex items-center gap-2 p-4 rounded-lg ${activeClass}
+                ${getHoverClass(isActive)} overflow-hidden
+              `}
+              title="Home"
+            >
+              <Home className="w-6 h-6 flex-none" />
+              <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
+                Dashboard
+              </span>
+            </Link>
+          );
+        })()}
 
         {/* Profile Link */}
-        <Link
-          to={ROUTES.MY_PROFILE}
-          // Increased padding to accommodate larger icon
-          className={`flex items-center gap-2 p-4 rounded-lg ${getActiveClass(ROUTES.MY_PROFILE, selectedRole)}
-            ${getHoverClass()} overflow-hidden
-          `}
-          title="My Profile"
-        >
-          {/* Increased icon size from w-5 h-5 to w-6 h-6 */}
-          <UserCircle className="w-6 h-6 flex-none" />
-          {/* Use 'isVisuallyCollapsed' here */}
-          <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
-            My Profile
-          </span>
-        </Link>
+        {(() => {
+          const { isActive, class: activeClass } = getActiveClass(ROUTES.MY_PROFILE, selectedRole);
+          return (
+            <Link
+              to={ROUTES.MY_PROFILE}
+              className={`flex items-center gap-2 p-4 rounded-lg ${activeClass}
+                ${getHoverClass(isActive)} overflow-hidden
+              `}
+              title="My Profile"
+            >
+              <UserCircle className="w-6 h-6 flex-none" />
+              <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
+                My Profile
+              </span>
+            </Link>
+          );
+        })()}
 
         {/* My Students Link (Conditionally rendered) */}
         {canAccessMyStudents && (
-          <Link
-            to={ROUTES.MY_STUDENTS}
-            // Increased padding to accommodate larger icon
-            className={`flex items-center gap-2 p-4 rounded-lg ${getActiveClass(ROUTES.MY_STUDENTS, selectedRole)}
-              ${getHoverClass()} overflow-hidden
-            `}
-            title="My Students"
-          >
-            {/* Increased icon size from w-5 h-5 to w-6 h-6 */}
-            <GraduationCap className="w-6 h-6 flex-none" />
-            {/* Use 'isVisuallyCollapsed' here */}
-            <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
-              {selectedRole === "HOD"
-                ? "Department Students"
-                : selectedRole === "FAC"
-                ? "My Students"
-                : "Phd Students"}
-            </span>
-          </Link>
+          (() => {
+            const { isActive, class: activeClass } = getActiveClass(ROUTES.MY_STUDENTS, selectedRole);
+            return (
+              <Link
+                to={ROUTES.MY_STUDENTS}
+                className={`flex items-center gap-2 p-4 rounded-lg ${activeClass}
+                  ${getHoverClass(isActive)} overflow-hidden
+                `}
+                title="My Students"
+              >
+                <GraduationCap className="w-6 h-6 flex-none" />
+                <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
+                  {selectedRole === "HOD"
+                    ? "Department Students"
+                    : selectedRole === "FAC"
+                    ? "My Students"
+                    : "Phd Students"}
+                </span>
+              </Link>
+            );
+          })()
         )}
         {/* Department Faculty Management Link (Conditionally rendered) */}
         {canAccessDepartmentFaculty && (
-          <Link
-            to={ROUTES.DEPARTMENT_FACULTY}
-            // Increased padding to accommodate larger icon
-            className={`flex items-center gap-2 p-4 rounded-lg ${getActiveClass(ROUTES.DEPARTMENT_FACULTY, selectedRole)}
-              ${getHoverClass()} overflow-hidden
-            `}
-            title="Department Faculty"
-          >
-            {/* Increased icon size from w-5 h-5 to w-6 h-6 */}
-            <Users className="w-6 h-6 flex-none" />
-            {/* Use 'isVisuallyCollapsed' here */}
-            <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
-              Department Staff
-            </span>
-          </Link>
+          (() => {
+            const { isActive, class: activeClass } = getActiveClass(ROUTES.DEPARTMENT_FACULTY, selectedRole);
+            return (
+              <Link
+                to={ROUTES.DEPARTMENT_FACULTY}
+                className={`flex items-center gap-2 p-4 rounded-lg ${activeClass}
+                  ${getHoverClass(isActive)} overflow-hidden
+                `}
+                title="Department Faculty"
+              >
+                <Users className="w-6 h-6 flex-none" />
+                <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
+                  Department Staff
+                </span>
+              </Link>
+            );
+          })()
         )}
 
         {/* Scholarship Section (Conditionally rendered with dropdown) */}
         {canAccessScholarships && (
           <div className="space-y-1">
             <div className="flex items-center overflow-hidden">
-              <Link
-                to={ROUTES.SCHOLARSHIP}
-                // Increased padding to accommodate larger icon
-                className={`flex-1 flex items-center gap-2 p-4 rounded-lg ${getActiveClass(ROUTES.SCHOLARSHIP, selectedRole)}
-                  ${getHoverClass()}
-                `}
-              >
-                {/* Increased icon size from w-5 h-5 to w-6 h-6 */}
-                <Wallet className="w-6 h-6 flex-none" />
-                {/* Use 'isVisuallyCollapsed' here */}
-                <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
-                  Scholarship
-                </span>
-              </Link>
+              {(() => {
+                const { isActive, class: activeClass } = getActiveClass(ROUTES.SCHOLARSHIP, selectedRole);
+                return (
+                  <Link
+                    to={ROUTES.SCHOLARSHIP}
+                    className={`flex-1 flex items-center gap-2 p-4 rounded-lg ${activeClass}
+                      ${getHoverClass(isActive)}
+                    `}
+                    title="Scholarship"
+                  >
+                    <Wallet className="w-6 h-6 flex-none" />
+                    <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
+                      Scholarship
+                    </span>
+                  </Link>
+                );
+              })()}
               {/* Only show dropdown arrow when not visually collapsed */}
               {!isVisuallyCollapsed && (
                 <button
@@ -242,37 +248,41 @@ export const Sidebar = () => {
             </div>
             {/* Conditional rendering for dropdown with transition */}
             <div
-              // MODIFICATION: Removed transition-all duration-300 ease-in-out for instant dropdown change
               className={`overflow-hidden ${
-                // Dropdown should open if isScholarshipOpen AND not visually collapsed
                 isScholarshipOpen && !isVisuallyCollapsed ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
               {/* Only render content when open AND not visually collapsed */}
               {isScholarshipOpen && !isVisuallyCollapsed && (
                 <div className="ml-4 space-y-1">
-                  <Link
-                    to={ROUTES.APPROVE_SCHOLARSHIP}
-                    // Increased padding to accommodate larger icon
-                    className={`flex items-center gap-2 p-3 rounded-lg ${getActiveClass(ROUTES.APPROVE_SCHOLARSHIP, selectedRole)}
-                      ${getHoverClass()}
-                    `}
-                  >
-                    {/* Increased icon size from w-4 h-4 to w-5 h-5 */}
-                    <CheckCircle className="w-5 h-5 flex-none" />
-                    <span className="text-sm">Approve Scholarship</span>
-                  </Link>
-                  <Link
-                    to={ROUTES.SCHOLARSHIP_MANAGEMENT}
-                    // Increased padding to accommodate larger icon
-                    className={`flex items-center gap-2 p-3 rounded-lg ${getActiveClass(ROUTES.SCHOLARSHIP_MANAGEMENT, selectedRole)}
-                      ${getHoverClass()}
-                    `}
-                  >
-                    {/* Increased icon size from w-4 h-4 to w-5 h-5 */}
-                    <Users className="w-5 h-5 flex-none" />
-                    <span className="text-sm">Scholarship Management</span>
-                  </Link>
+                  {(() => {
+                    const { isActive, class: activeClass } = getActiveClass(ROUTES.APPROVE_SCHOLARSHIP, selectedRole);
+                    return (
+                      <Link
+                        to={ROUTES.APPROVE_SCHOLARSHIP}
+                        className={`flex items-center gap-2 p-3 rounded-lg ${activeClass}
+                          ${getHoverClass(isActive)}
+                        `}
+                      >
+                        <CheckCircle className="w-5 h-5 flex-none" />
+                        <span className="text-sm">Approve Scholarship</span>
+                      </Link>
+                    );
+                  })()}
+                  {(() => {
+                    const { isActive, class: activeClass } = getActiveClass(ROUTES.SCHOLARSHIP_MANAGEMENT, selectedRole);
+                    return (
+                      <Link
+                        to={ROUTES.SCHOLARSHIP_MANAGEMENT}
+                        className={`flex items-center gap-2 p-3 rounded-lg ${activeClass}
+                          ${getHoverClass(isActive)}
+                        `}
+                      >
+                        <Users className="w-5 h-5 flex-none" />
+                        <span className="text-sm">Scholarship Management</span>
+                      </Link>
+                    );
+                  })()}
                 </div>
               )}
             </div>
@@ -281,40 +291,44 @@ export const Sidebar = () => {
 
         {/* Export Section for AC role (Conditionally rendered) */}
         {canAccessExport && (
-          <Link
-            to={ROUTES.EXPORT}
-            // Increased padding to accommodate larger icon
-            className={`flex items-center gap-2 p-4 rounded-lg ${getActiveClass(ROUTES.EXPORT, selectedRole)}
-              ${getHoverClass()} overflow-hidden
-            `}
-            title="Export"
-          >
-            {/* Increased icon size from w-5 h-5 to w-6 h-6 */}
-            <Download className="w-6 h-6 flex-none" />
-            {/* Use 'isVisuallyCollapsed' here */}
-            <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
-              Export
-            </span>
-          </Link>
+          (() => {
+            const { isActive, class: activeClass } = getActiveClass(ROUTES.EXPORT, selectedRole);
+            return (
+              <Link
+                to={ROUTES.EXPORT}
+                className={`flex items-center gap-2 p-4 rounded-lg ${activeClass}
+                  ${getHoverClass(isActive)} overflow-hidden
+                `}
+                title="Export"
+              >
+                <Download className="w-6 h-6 flex-none" />
+                <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
+                  Export
+                </span>
+              </Link>
+            );
+          })()
         )}
 
         {/* Student Scholarship Section (Conditionally rendered for student role) */}
         {isStudentRole && (
-          <Link
-            to={ROUTES.STUDENT_SCHOLARSHIP}
-            // Increased padding to accommodate larger icon
-            className={`flex items-center gap-2 p-4 rounded-lg ${getActiveClass(ROUTES.STUDENT_SCHOLARSHIP, null)}
-              ${getHoverClass()} overflow-hidden
-            `}
-            title="Scholarship"
-          >
-            {/* Increased icon size from w-5 h-5 to w-6 h-6 */}
-            <Wallet className="w-6 h-6 flex-none" />
-            {/* Use 'isVisuallyCollapsed' here */}
-            <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
-              Scholarship
-            </span>
-          </Link>
+          (() => {
+            const { isActive, class: activeClass } = getActiveClass(ROUTES.STUDENT_SCHOLARSHIP, null);
+            return (
+              <Link
+                to={ROUTES.STUDENT_SCHOLARSHIP}
+                className={`flex items-center gap-2 p-4 rounded-lg ${activeClass}
+                  ${getHoverClass(isActive)} overflow-hidden
+                `}
+                title="Scholarship"
+              >
+                <Wallet className="w-6 h-6 flex-none" />
+                <span className={getTextTransitionClasses(isVisuallyCollapsed)}>
+                  Scholarship
+                </span>
+              </Link>
+            );
+          })()
         )}
       </nav>
     </div>

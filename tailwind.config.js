@@ -31,6 +31,7 @@ export default {
         'stu-acc': '#F43F5E',           // student-accent-rose (rose-500)
 
         // Faculty Colors
+        'spare' : '#E299DD',
         'fac-pri': '#7C3AED',           // faculty-primary-main (violet-600)
         'fac-pri-hover': '#6D28D9',     // faculty-primary-main-hover (violet-700)
         'fac-pri-hover-light': '#8B5CF6', // faculty-primary-hover-light (violet-500) - NEW
