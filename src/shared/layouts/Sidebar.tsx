@@ -20,7 +20,7 @@ export const Sidebar = () => {
   const location = useLocation();
   const { user, selectedRole } = useAuth();
 
-  const [isManuallyCollapsed, setIsManuallyCollapsed] = useState(false);
+  const [isManuallyCollapsed, setIsManuallyCollapsed] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
   const [isScholarshipOpen, setIsScholarshipOpen] = useState(
     location.pathname.startsWith(ROUTES.SCHOLARSHIP)
@@ -57,7 +57,12 @@ export const Sidebar = () => {
   // Function to determine active class for navigation links
   // It now returns an object with both the class string and the active state
   const getActiveClass = (path: string, currentRole: Role | null) => {
-    const isActivePath = location.pathname === path || location.pathname.startsWith(path);
+    // Special handling for the dashboard route to ensure exact match
+    const isActivePath =
+      path === ROUTES.DASHBOARD
+        ? location.pathname === path
+        : location.pathname.startsWith(path);
+
     let classString = "";
 
     if (isActivePath) {
@@ -130,6 +135,7 @@ export const Sidebar = () => {
       <nav className="mt-8 px-4 flex-1 space-y-2">
         {/* Dashboard Link */}
         {(() => {
+          // Pass ROUTES.DASHBOARD directly to getActiveClass
           const { isActive, class: activeClass } = getActiveClass(ROUTES.DASHBOARD, selectedRole);
           return (
             <Link

@@ -15,7 +15,7 @@ import Login from "../features/auth/Login";
 import { HomePage } from "../features/dashboard/Home";
 // import { ProfileRouter } from "../features/profile";
 
-// import { MyStudentsPage } from "../features/faculty/myStudents/MyStudents";
+import { MyStudentsPage } from "../features/faculty/myStudents/MyStudents";
 // import DepartmentFacultyPage from "../features/faculty/departmentFaculty/DepartmentFaculty";
 
 // import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
@@ -93,7 +93,7 @@ function App() {
                   </DashboardLayout>
                 </PrivateRoute>
               }
-            />
+            /> */}
 
             <Route
               path={ROUTES.MY_STUDENTS}
@@ -106,7 +106,7 @@ function App() {
               }
             />
 
-            <Route
+            {/* <Route
               path={ROUTES.DEPARTMENT_FACULTY}
               element={
                 <PrivateRoute allowedRoles={["HOD"]}>
