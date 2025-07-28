@@ -9,6 +9,8 @@ import photo from "../../assets/photos/photo.png";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { getMembers, getScholarships } from "../../services/index";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { BackgroundBeamsWithCollision } from "../../lib/components/ui/background-beams-with-collision";
+
 
 interface StatCardProps {
   title: string;
@@ -190,9 +192,11 @@ export const HomePage: React.FC = () => {
   const PIE_COLORS = roleColors.pieColors;
 
   return (
+    
     <div className="px-10 py-8 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans space-y-12">
       {/* Welcome back banner */}
-      <div className={`flex items-center justify-between bg-${roleColors.primary} dark:bg-${roleColors.primaryHover} rounded-2xl p-8 shadow-lg hover:shadow-xl hover:scale-[1.005] transition-all duration-300 border border-gray-200 dark:border-none`}>
+      <BackgroundBeamsWithCollision>
+      <div className={`flex items-center justify-between bg-${roleColors.primary} dark:bg-${roleColors.primaryHover} rounded-2xl p-8 shadow-lg transition-all duration-300 border border-gray-200 dark:border-none`}>
         <div className="flex flex-col">
           <p className="text-sm mb-1 text-white">{getFormattedDate()}</p>
           <motion.h1
@@ -219,6 +223,7 @@ export const HomePage: React.FC = () => {
             Always stay updated in your student portal
           </p>
         </div>
+        
         <div className="w-40 h-40">
           {/* <img
             src="/student-avatar.png"
@@ -227,6 +232,7 @@ export const HomePage: React.FC = () => {
           /> */}
         </div>
       </div>
+      </BackgroundBeamsWithCollision>
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
