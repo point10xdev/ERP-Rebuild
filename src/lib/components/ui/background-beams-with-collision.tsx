@@ -48,7 +48,7 @@ const beams = [
   { initialX: 920, translateX: 920, duration: 8, repeatDelay: 3, delay: 5.1, className: "h-11" },
   { initialX: 1080, translateX: 1080, duration: 7, repeatDelay: 6, delay: 1.9, className: "h-15" },
   { initialX: 1250, translateX: 1250, duration: 9, repeatDelay: 5, delay: 3.7, className: "h-22" },
-  { initialX: 800, translateX: 800, duration: 5, repeatDelay: 8, delay: 0.7, className: "h-9" },
+  { initialX: 810, translateX: 810, duration: 5, repeatDelay: 8, delay: 0.7, className: "h-9" },
 ];
 
   return (
