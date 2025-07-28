@@ -5,6 +5,8 @@ import { ROUTES } from "../../app/routes";
 import { useState, useEffect } from "react";
 import type { Role } from "../../types/roles"; // Updated import name
 import { showSuccess, showError } from "../../utils/toast";
+import { Button } from "../../lib/components/ui/moving-border"; // Import the Button component
+
 
 // Mapping backend roles to user-friendly display names
 const roleDisplayMap: Record<Role, string> = {
@@ -112,21 +114,22 @@ export const Header = () => {
           {/* Role Selector */}
           <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
             <div className="relative">
-              {roles ? (
+              {roles && roles.length > 0 ? ( // Added check for roles.length > 0 for clarity, though `roles` being truthy usually implies this.
                 <>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsOpen(!isOpen);
-                    }}
-                    // Adjusted padding and font size for larger button
-                    className="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-all"
-                  >
+                  <Button
+                     borderRadius="0.7rem"
+                     onClick={(e) => {
+                       e.stopPropagation();
+                       setIsOpen(!isOpen);
+                     }}
+                     containerClassName="h-auto w-auto p-[1px] text-xl"
+                     borderClassName="h-20 w-20 bg-[radial-gradient(#F43F5E_40%,transparent_60%)] opacity-[0.8]"
+                     className="flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-all border-none">
                     {selectedRole
                       ? roleDisplayMap[selectedRole] || selectedRole
                       : "Select Role"}
                     <ChevronDown className={`w-5 h-5 ml-2 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                  </button>
+                  </Button>
 
                   {isOpen && (
                     <ul className="absolute left-0 mt-2 w-44 bg-white dark:bg-gray-800 shadow-lg rounded-lg z-50 border dark:border-gray-700">
@@ -151,9 +154,17 @@ export const Header = () => {
                   )}
                 </>
               ) : (
-                <span className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 rounded-lg">
+                // --- Start of changes for Scholar role ---
+                <Button
+                  borderRadius="0.7rem" // Consistent border radius
+                  // No onClick for Scholar as it's not a dropdown
+                  containerClassName="h-auto w-auto p-[1px] text-xl"
+                  borderClassName="h-20 w-20 bg-[radial-gradient(#F43F5E_40%,transparent_60%)] opacity-[0.8]" // Consistent border style
+                  className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 rounded-lg border-none" // Consistent styling, added border-none
+                >
                   Scholar
-                </span>
+                </Button>
+                // --- End of changes for Scholar role ---
               )}
             </div>
           </h2>
