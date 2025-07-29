@@ -47,7 +47,7 @@ export const PrivateRoute: React.FC<PrivateRouteProps> = ({
     !allowedRoles.includes(selectedRole)
   ) {
     // Show toast for authorized user trying to access restricted route
-    toast.error("Uh Oh You cant do that");
+    toast.error("Access Denied: You do not have permission to perform this action.");
     return <Navigate to={ROUTES.DASHBOARD} replace />;
   }
 

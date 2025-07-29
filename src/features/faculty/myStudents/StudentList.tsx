@@ -9,17 +9,8 @@ import { getStudent } from "../../../services/index";
 import conf from "../../../types/conf.json";
 
 import { Search, ListRestart } from 'lucide-react'; // Changed import from TimerReset to ListRestart
+import { get } from "../../../utils/configFunction";
 
-const get = (val: string, obj: Record<string, string>, ci = false) => {
-  if (!val) return val;
-  if (ci) {
-    const match = Object.keys(obj).find(
-      (k) => k.toLowerCase() === val.toLowerCase()
-    );
-    return match ? obj[match] : val;
-  }
-  return obj[val] || val;
-};
 
 export const StudentList = () => {
   const { user, selectedRole } = useAuth();

@@ -16,7 +16,7 @@ import { HomePage } from "../features/dashboard/Home";
 // import { ProfileRouter } from "../features/profile";
 
 import { MyStudentsPage } from "../features/faculty/myStudents/MyStudents";
-// import DepartmentFacultyPage from "../features/faculty/departmentFaculty/DepartmentFaculty";
+import DepartmentFacultyPage from "../features/faculty/departmentFaculty/DepartmentFaculty";
 
 // import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
 // import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarship";
@@ -106,7 +106,7 @@ function App() {
               }
             />
 
-            {/* <Route
+            <Route
               path={ROUTES.DEPARTMENT_FACULTY}
               element={
                 <PrivateRoute allowedRoles={["HOD"]}>
@@ -117,7 +117,7 @@ function App() {
               }
             />
 
-            <Route
+            {/* <Route
               path={ROUTES.SCHOLARSHIP}
               element={
                 <PrivateRoute allowedRoles={["FAC", "HOD", "AD", "DEAN"]}>
