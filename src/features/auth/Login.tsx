@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ROUTES } from "../../app/routes";
-import { Loader, GraduationCap, User } from "lucide-react";
+import { Loader, GraduationCap, User, Eye, EyeOff } from "lucide-react"; // Import Eye and EyeOff icons
 import { useAuth } from "./store/customHooks";
 import { showError } from "../../utils/toast";
 import type { LoginPayload } from "../../types/auth";
@@ -11,6 +11,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginType, setLoginType] = useState<LoginPayload['type']>("scholar");
+  const [showPassword, setShowPassword] = useState(false); // New state for password visibility
   const { login, loading, error } = useAuth();
   const navigate = useNavigate();
 
@@ -48,14 +49,14 @@ const Login = () => {
           <h2 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100">
             Welcome to ERP Portal
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-center text-sm text-gray-700 dark:text-gray-300">
             Please select your login type
           </p>
         </div>
 
         {/* Sliding Toggle */}
         <div className="relative flex justify-center mb-6">
-          <div className="relative inline-flex items-center border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 rounded-full p-1 shadow-sm">
+          <div className="relative inline-flex items-center border border-gray-300 dark:border-gray-600 bg-gray-200 dark:bg-gray-800 rounded-full p-1 shadow-sm">
             {/* Sliding background */}
             <div
               className={`absolute top-1 left-1 w-[calc(50%-0.25rem)] h-[calc(100%-0.5rem)] rounded-full transition-transform duration-300 ease-in-out ${
@@ -98,7 +99,7 @@ const Login = () => {
         </div>
 
         {error && (
-          <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-200 px-4 py-3 rounded">
+          <div className="bg-red-200 dark:bg-red-800 border border-red-400 dark:border-red-700 text-red-800 dark:text-red-200 px-4 py-3 rounded">
             {error}
           </div>
         )}
@@ -138,20 +139,34 @@ const Login = () => {
             >
               Password
             </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              className={`mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 ${
-                loginType === "scholar"
-                  ? "focus:ring-stu-pri dark:focus:ring-stu-pri"
-                  : "focus:ring-fac-pri dark:focus:ring-fac-pri"
-              }`}
-              placeholder="Enter Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="relative mt-1"> {/* Added relative positioning */}
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"} // Dynamically change type
+                required
+                className={`block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 pr-10 ${ // Added pr-10 for icon spacing
+                  loginType === "scholar"
+                    ? "focus:ring-stu-pri dark:focus:ring-stu-pri"
+                    : "focus:ring-fac-pri dark:focus:ring-fac-pri"
+                }`}
+                placeholder="Enter Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button" // Important: Prevent form submission
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 dark:text-gray-400 focus:outline-none"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5" />
+                ) : (
+                  <Eye className="h-5 w-5" />
+                )}
+              </button>
+            </div>
           </div>
 
           <div>
@@ -177,14 +192,12 @@ const Login = () => {
               to={ROUTES.RESET_PASSWORD}
               className={`text-sm ${
                 loginType === "scholar"
-                  ? "text-stu-pri hover:text-stu-pri-hover dark:hover:text-stu-pri-hover-light"
-                  : "text-fac-pri hover:text-fac-pri-hover dark:hover:text-fac-pri-hover-light"
+                  ? "text-stu-pri hover:text-stu-pri-hover"
+                  : "text-fac-pri hover:text-fac-pri-hover"
               }`}
             >
               Forgot Password?
             </Link>
-          
-                    
           </div>
         </form>
       </div>
