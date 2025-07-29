@@ -259,8 +259,8 @@ export const HomePage: React.FC = () => {
                                 data={pieChartData}
                                 cx="50%"
                                 cy="50%"
-                                innerRadius={50} // Added for donut chart
-                                outerRadius={80}
+                                innerRadius={90} // Added for donut chart
+                                outerRadius={120}
                                 fill="#8884d8"
                                 dataKey="value"
                             >

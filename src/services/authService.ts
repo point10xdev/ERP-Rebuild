@@ -1,3 +1,5 @@
+// services/authService.ts
+
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import config from '../types/conf.json';
@@ -12,24 +14,21 @@ const authAPI = axios.create({
   timeout: 10000,
 });
 
-// In-memory user storage
-let currentUser: Scholar | Faculty | null = null;
-
 /**
  * Cookie utilities
  */
 export const cookieUtils = {
   setTokens: (tokens: Tokens): void => {
     const isHttps = window.location.protocol === 'https:';
-    Cookies.set('accessToken', tokens.access, { 
-      secure: isHttps, 
-      sameSite: 'strict', 
-      expires: 7  // 7 day expiry
+    Cookies.set('accessToken', tokens.access, {
+      secure: isHttps,
+      sameSite: 'strict',
+      expires: 7, // 7 day expiry
     });
-    Cookies.set('refreshToken', tokens.refresh, { 
-      secure: isHttps, 
-      sameSite: 'strict', 
-      expires: 7 
+    Cookies.set('refreshToken', tokens.refresh, {
+      secure: isHttps,
+      sameSite: 'strict',
+      expires: 7,
     });
   },
 
@@ -39,7 +38,7 @@ export const cookieUtils = {
   clearTokens: (): void => {
     Cookies.remove('accessToken');
     Cookies.remove('refreshToken');
-  }
+  },
 };
 
 /**
@@ -47,14 +46,14 @@ export const cookieUtils = {
  */
 export const refreshAuthToken = async (): Promise<string | null> => {
   const refreshToken = cookieUtils.getRefreshToken();
-  
+
   if (!refreshToken) {
     throw new Error('No refresh token available');
   }
 
   try {
     const response = await authAPI.post('/users/token/refresh/', {
-      refresh: refreshToken
+      refresh: refreshToken,
     });
 
     const { access } = response.data;
@@ -62,21 +61,20 @@ export const refreshAuthToken = async (): Promise<string | null> => {
       throw new Error('Invalid refresh response');
     }
 
-    // Update access token
+    // Update access token cookie
     const isHttps = window.location.protocol === 'https:';
-    Cookies.set('accessToken', access, { 
-      secure: isHttps, 
-      sameSite: 'strict', 
-      expires: 7 
+    Cookies.set('accessToken', access, {
+      secure: isHttps,
+      sameSite: 'strict',
+      expires: 7,
     });
 
     logMessage('info', 'Token refreshed successfully', 'refreshAuthToken');
     return access;
-
   } catch (error) {
     logMessage('error', 'Token refresh failed', 'refreshAuthToken', error);
+    // Clear tokens on failure
     cookieUtils.clearTokens();
-    currentUser = null;
     throw new Error('Failed to refresh token');
   }
 };
@@ -109,17 +107,16 @@ export const loginUser = async (payload: LoginPayload): Promise<ApiResponse> => 
       throw new Error('No user data in server response');
     }
 
-    // Store user and tokens
-    currentUser = user;
+    // Store tokens in cookies
     cookieUtils.setTokens(tokens);
 
     logMessage('info', 'Login successful', 'loginUser', {
       userId: user.id,
-      userType: payload.type
+      userType: payload.type,
     });
 
+    // Return tokens and user data to be stored in Recoil
     return { tokens, user };
-
   } catch (error) {
     logMessage('error', 'Login failed', 'loginUser', error);
 
@@ -146,7 +143,7 @@ export const loginUser = async (payload: LoginPayload): Promise<ApiResponse> => 
 };
 
 /**
- * Logout function - clears tokens and user state
+ * Logout function - clears tokens
  */
 export const logoutUser = async (): Promise<void> => {
   const refreshToken = cookieUtils.getRefreshToken();
@@ -159,13 +156,17 @@ export const logoutUser = async (): Promise<void> => {
     }
   } catch (error) {
     // Log error but don't throw - we still want to clear local state
-    logMessage('error', 'Server logout failed, proceeding with local cleanup', 'logoutUser', error);
+    logMessage(
+      'error',
+      'Server logout failed, proceeding with local cleanup',
+      'logoutUser',
+      error
+    );
   }
 
-  // Always clear local state regardless of server response
+  // Always clear local cookies
   cookieUtils.clearTokens();
-  currentUser = null;
-  
+
   logMessage('info', 'User logged out and tokens cleared', 'logoutUser');
 };
 
@@ -173,7 +174,10 @@ export const logoutUser = async (): Promise<void> => {
  * Initialize auth state from cookies and fetch user data
  * This should be called on app startup
  */
-export const initializeAuthFromCookies = async (): Promise<{ user: Scholar | Faculty; tokens: Tokens } | null> => {
+export const initializeAuthFromCookies = async (): Promise<{
+  user: Scholar | Faculty;
+  tokens: Tokens;
+} | null> => {
   const accessToken = cookieUtils.getAccessToken();
   const refreshToken = cookieUtils.getRefreshToken();
 
@@ -183,8 +187,7 @@ export const initializeAuthFromCookies = async (): Promise<{ user: Scholar | Fac
   }
 
   try {
-    // Simple JWT decode to get user info (just split and parse, no validation needed here)
-    // Replace this using a decode library
+    // It's better to use a library like 'jwt-decode' for this
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
     const userId = payload.id;
     const userType = payload.type; // 'scholar' or 'FAC'
@@ -194,46 +197,42 @@ export const initializeAuthFromCookies = async (): Promise<{ user: Scholar | Fac
     }
 
     // Determine endpoint based on user type
-    const endpoint = userType === 'scholar' 
-      ? `/users/student/?id=${userId}`
-      : `/users/faculty/?id=${userId}`;
+    const endpoint =
+      userType === 'scholar'
+        ? `/users/student/?id=${userId}`
+        : `/users/faculty/?id=${userId}`;
 
     // Fetch user data with current token
     const response = await authAPI.get(endpoint, {
-      headers: { Authorization: `Bearer ${accessToken}` }
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
 
     const user = response.data;
     const tokens = { access: accessToken, refresh: refreshToken };
 
-    // Store user in memory
-    currentUser = user;
+    logMessage(
+      'info',
+      'Auth state initialized from cookies',
+      'initializeAuthFromCookies',
+      {
+        userId,
+        userType,
+      }
+    );
 
-    logMessage('info', 'Auth state initialized from cookies', 'initializeAuthFromCookies', {
-      userId,
-      userType
-    });
-
+    // Return the user and tokens to be set in the Recoil state
     return { user, tokens };
-
   } catch (error) {
-    logMessage('error', 'Failed to initialize auth from cookies', 'initializeAuthFromCookies', error);
-    
+    logMessage(
+      'error',
+      'Failed to initialize auth from cookies',
+      'initializeAuthFromCookies',
+      error
+    );
+
     // Clear invalid tokens
     cookieUtils.clearTokens();
-    currentUser = null;
-    
+
     return null;
   }
-};
-/**
- * Get current user
- */
-export const getCurrentUser = (): Scholar | Faculty | null => currentUser;
-
-/**
- * Check if authenticated
- */
-export const isAuthenticated = (): boolean => {
-  return !!(cookieUtils.getAccessToken() && cookieUtils.getRefreshToken() && currentUser);
 };

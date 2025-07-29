@@ -174,7 +174,7 @@ function App() {
             /> */}
 
             {/* Catch-all route for 404 - Optional but recommended */}
-            <Route path="*" element={<Navigate to={ROUTES.LOGIN} replace />} />
+            <Route path="*" element={<Navigate to={ROUTES.DASHBOARD} replace />} />
           </Routes>
         </Router>
       </DarkModeProvider>
