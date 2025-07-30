@@ -23,7 +23,7 @@ export const ScholarshipDetails: React.FC<ScholarshipDetailsProps> = ({ user }) 
           ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(user.scholarship_basic)
           : 'N/A'}
       </p>
-        <p className="text-gray-500 dark:text-gray-400 mb-2">HRA Scholarship: {user.scholarship_hra}</p>
+        <p className="text-gray-500 dark:text-gray-400 mb-2">HRA Scholarship: {user.scholarship_hra * 100}%</p>
         <p className="text-gray-500 dark:text-gray-400 mb-2">
         Admission Category:{" "}
         {get(user.admission_category, conf.admission_category)}

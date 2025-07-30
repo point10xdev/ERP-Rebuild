@@ -189,6 +189,8 @@ export const HomePage: React.FC = () => {
     value: stat.count,
   }));
 
+  const totalStats = pieChartData.reduce((sum, entry) => sum + entry.value, 0);
+
   // Colors for the pie chart slices, now dynamic
   const PIE_COLORS = roleColors.pieColors;
 
@@ -239,52 +241,63 @@ export const HomePage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         {/* Left (2/3) */}
         <div className="lg:col-span-2 space-y-10">
+          
           {/* Donut Chart Section */}
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-700">
             <h2 className="text-xl font-semibold mb-4">Scholarship Summary</h2>
-            <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between h-72">
+
+            {totalStats > 0 ? (
+              // If there's data, show the chart and legend
+              <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between h-72">
                 <div className="w-full md:w-2/3 h-full">
-                    <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
-                            <defs>
-                                {/* Define gradients dynamically based on PIE_COLORS */}
-                                {PIE_COLORS.map((color, index) => (
-                                    <linearGradient key={`grad-${index}`} id={`colorUv${index}`} x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor={color} stopOpacity={1}/>
-                                        <stop offset="95%" stopColor={color} stopOpacity={0.8}/>
-                                    </linearGradient>
-                                ))}
-                            </defs>
-                            <Tooltip />
-                            <Pie
-                                data={pieChartData}
-                                cx="50%"
-                                cy="50%"
-                                innerRadius={90} // Added for donut chart
-                                outerRadius={120}
-                                fill="#8884d8"
-                                dataKey="value"
-                            >
-                                {pieChartData.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={`url(#colorUv${index})`} />
-                                ))}
-                            </Pie>
-                        </PieChart>
-                    </ResponsiveContainer>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <defs>
+                        {PIE_COLORS.map((color, index) => (
+                          <linearGradient key={`grad-${index}`} id={`colorUv${index}`} x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor={color} stopOpacity={1}/>
+                            <stop offset="95%" stopColor={color} stopOpacity={0.8}/>
+                          </linearGradient>
+                        ))}
+                      </defs>
+                      <Tooltip />
+                      <Pie
+                        data={pieChartData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={90}
+                        outerRadius={120}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {pieChartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={`url(#colorUv${index})`} />
+                        ))}
+                      </Pie>
+                    </PieChart>
+                  </ResponsiveContainer>
                 </div>
                 <div className="w-full md:w-1/3 flex flex-col items-center md:items-start justify-center md:justify-start mt-4 md:mt-0 md:ml-4">
-                    <h3 className="text-lg font-medium mb-2 text-gray-900 dark:text-white">Legend</h3>
-                    {pieChartData.map((entry, index) => (
-                        <div key={entry.name} className="flex items-center mb-1">
-                            <span
-                                className="inline-block w-4 h-4 rounded-full mr-2"
-                                style={{ backgroundColor: PIE_COLORS[index % PIE_COLORS.length] }}
-                            ></span>
-                            <span className="text-gray-900 dark:text-gray-300 text-sm">{entry.name} : {entry.value}</span>
-                        </div>
-                    ))}
+                  <h3 className="text-lg font-medium mb-2 text-gray-900 dark:text-white">Legend</h3>
+                  {pieChartData.map((entry, index) => (
+                    <div key={entry.name} className="flex items-center mb-1">
+                      <span
+                        className="inline-block w-4 h-4 rounded-full mr-2"
+                        style={{ backgroundColor: PIE_COLORS[index % PIE_COLORS.length] }}
+                      ></span>
+                      <span className="text-gray-900 dark:text-gray-300 text-sm">{entry.name} : {entry.value}</span>
+                    </div>
+                  ))}
                 </div>
-            </div>
+              </div>
+            ) : (
+              // If there's NO data, show a centered message
+              <div className="flex items-center justify-center h-72">
+                <p className="text-gray-500 dark:text-gray-400 text-lg">
+                  No scholarship data to display yet.
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Scholarship Notification */}
@@ -300,7 +313,7 @@ export const HomePage: React.FC = () => {
                   onClick={() => setOpen((prev) => !prev)}
                 >
                   <div>
-                    <h3 className=" hover:bg-gray-100  dark:hover:bg-gray-700 text-base font-semibold">
+                    <h3 className=" hover:bg-gray-100   dark:hover:bg-gray-700 text-base font-semibold">
                       🎓 Unreleased Scholarships Found
                     </h3>
                   </div>

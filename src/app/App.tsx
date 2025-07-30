@@ -23,10 +23,11 @@ import { ManageScholarship } from "../features/faculty/scholarship/ManageScholar
 import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
 import { CurrentScholarship, PreviousScholarships } from "../features/student/scholarship";
 
-// import { Export } from "../features/export/Export";
+import { Export } from "../features/export/Export";
 
 import { ROUTES } from "./routes";
 import { ToastContainer } from "react-toastify";
+import { ScholarshipView } from "../features/student/scholarship/ScholarshipView";
 
 function App() {
   return (
@@ -154,14 +155,13 @@ function App() {
               element={
                 <PrivateRoute allowedRoles={["scholar"]}>
                   <DashboardLayout>
-                    <CurrentScholarship />
-                    <PreviousScholarships/>
+                    <ScholarshipView/>
                   </DashboardLayout>
                 </PrivateRoute>
               }              
             />
 
-            {/* <Route
+            <Route
               path={ROUTES.EXPORT}
               element={
                 <PrivateRoute allowedRoles={["AC"]}>
@@ -170,7 +170,7 @@ function App() {
                   </DashboardLayout>
                 </PrivateRoute>
               }
-            /> */}
+            />
 
             {/* Catch-all route for 404 - Optional but recommended */}
             <Route path="*" element={<Navigate to={ROUTES.DASHBOARD} replace />} />
