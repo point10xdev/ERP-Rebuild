@@ -108,6 +108,8 @@ export const useAuth = () => {
     }));
   };
 
+(window as any).debugSetRole = setSelectedRole;
+
   // Clear auth state (helper function)
   const clearAuthState = () => {
     setAuthState({

@@ -130,6 +130,7 @@ export const postScholarship = async (data: PostScholarshipPayload) => {
       throw new Error("Status must be either 'accept' or 'reject'.");
     }
   }
+  console.log(data);
 
   try {
     const res = await API.post("/scholarships/manage/", data);

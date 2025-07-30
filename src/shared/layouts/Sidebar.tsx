@@ -6,11 +6,12 @@ import {
   UserCircle,
   GraduationCap,
   Wallet,
-  CheckCircle,
   ChevronDown,
   ChevronUp,
   Download,
   AlignJustify,
+  BookOpen,
+  ClipboardCheck,
 } from "lucide-react";
 import { useAuth } from "../../features/auth/store/customHooks";
 import { ROUTES } from "../../app/routes";
@@ -270,7 +271,7 @@ export const Sidebar = () => {
                           ${getHoverClass(isActive)}
                         `}
                       >
-                        <CheckCircle className="w-5 h-5 flex-none" />
+                        <ClipboardCheck className="w-5 h-5 flex-none" />
                         <span className="text-sm">Approve Scholarship</span>
                       </Link>
                     );
@@ -284,7 +285,7 @@ export const Sidebar = () => {
                           ${getHoverClass(isActive)}
                         `}
                       >
-                        <Users className="w-5 h-5 flex-none" />
+                        <BookOpen className="w-5 h-5 flex-none" />
                         <span className="text-sm">Scholarship Management</span>
                       </Link>
                     );

@@ -1,5 +1,5 @@
 export interface BaseData {
-  id: string;
+  id: number;
 }
 
 export interface ScholarPost extends BaseData {

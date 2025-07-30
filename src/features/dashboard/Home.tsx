@@ -84,6 +84,7 @@ export const HomePage: React.FC = () => {
 
 
   useEffect(() => {
+    
     if (!user?.id) return;
 
     // Fetch supervisors based on selected role

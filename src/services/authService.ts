@@ -11,7 +11,7 @@ import type { Scholar } from '../types/scholar';
 // Create axios instance
 const authAPI = axios.create({
   baseURL: `${config.backend}/api`,
-  timeout: 10000,
+  timeout: 15000,
 });
 
 /**

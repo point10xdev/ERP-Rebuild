@@ -13,16 +13,15 @@ import Login from "../features/auth/Login";
 
 
 import { HomePage } from "../features/dashboard/Home";
-// import { ProfileRouter } from "../features/profile";
+import { ProfileRouter } from "../features/profile";
 
 import { MyStudentsPage } from "../features/faculty/myStudents/MyStudents";
 import DepartmentFacultyPage from "../features/faculty/departmentFaculty/DepartmentFaculty";
 
-// import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
-// import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarship";
-// import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
-
-// import { CurrentScholarship, PreviousScholarships } from "../features/students/scholarship";
+import { ScholarshipPage } from "../features/faculty/scholarship/Scholarship";
+import { ManageScholarship } from "../features/faculty/scholarship/ManageScholarships";
+import { ApproveScholarship } from "../features/faculty/scholarship/ApproveScholarship";
+import { CurrentScholarship, PreviousScholarships } from "../features/student/scholarship";
 
 // import { Export } from "../features/export/Export";
 
@@ -84,7 +83,7 @@ function App() {
               }
             />
 
-            {/* <Route
+            <Route
               path={ROUTES.MY_PROFILE}
               element={
                 <PrivateRoute>
@@ -93,7 +92,7 @@ function App() {
                   </DashboardLayout>
                 </PrivateRoute>
               }
-            /> */}
+            />
 
             <Route
               path={ROUTES.MY_STUDENTS}
@@ -117,7 +116,7 @@ function App() {
               }
             />
 
-            {/* <Route
+            <Route
               path={ROUTES.SCHOLARSHIP}
               element={
                 <PrivateRoute allowedRoles={["FAC", "HOD", "AD", "DEAN"]}>
@@ -162,7 +161,7 @@ function App() {
               }              
             />
 
-            <Route
+            {/* <Route
               path={ROUTES.EXPORT}
               element={
                 <PrivateRoute allowedRoles={["AC"]}>

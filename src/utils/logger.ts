@@ -28,7 +28,8 @@ export function logMessage(
   // Also log to console
   if (level === "error") {
     console.error(`[${log.time}] [${context}]`, message, data);
-  } else {
-    console.log(`[${log.time}] [${context}]`, message, data);
-  }
+  } 
+  // else {
+  //   console.log(`[${log.time}] [${context}]`, message, data);
+  // }
 }
