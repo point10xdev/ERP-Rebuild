@@ -1,0 +1,268 @@
+INFO:root:
+--- Null Entries (Column-wise) ---
+INFO:root:Name of the Research Scholar: 0
+INFO:root:Department: 0
+INFO:root:Enrolment No.: 0
+INFO:root:Mail ID: 132
+INFO:root:Contact Number: 133
+INFO:root:Registration No: 0
+INFO:root:Batch: 0
+INFO:root:Gender: 0
+INFO:root:Full Time/Part Time: 0
+INFO:root:Date of Joining: 0
+INFO:root:Admission Category: 0
+INFO:root:Supervisor: 0
+INFO:root:Co-supervisor: 369
+INFO:root:
+--- Duplicate Entries (Column-wise) ---
+INFO:root:
+Column: Name of the Research Scholar - 1 duplicates
+INFO:root:Duplicate values:
+['Misba Jan']
+INFO:root:
+Column: Department - 496 duplicates
+INFO:root:Duplicate values:
+['Chemical Engineering', 'Chemistry', 'Civil Engineering', 'Computer Science and Engineering', 'Electrical Engineering', 'Electronics and Communication Engineering', 'Humanities Social Sciences and Management', 'Information Technology', 'Mathematics', 'Mechanical Engineering', 'Materials and Metallurgical Engineering', 'Physics']
+INFO:root:
+Column: Mail ID - 131 duplicates
+INFO:root:Duplicate values:
+[]
+INFO:root:
+Column: Contact Number - 132 duplicates
+INFO:root:Duplicate values:
+[]
+INFO:root:
+Column: Registration No - 3 duplicates
+INFO:root:Duplicate values:
+['2019NITSGR0973', '2023NITSGR0001']
+INFO:root:
+Column: Batch - 497 duplicates
+INFO:root:Duplicate values:
+[2019, 2021, 2022, 2023, 2024, 2018, 2020, 2017, 2025]
+INFO:root:
+Column: Gender - 506 duplicates
+INFO:root:Duplicate values:
+['Female', 'Male']
+INFO:root:
+Column: Full Time/Part Time - 506 duplicates
+INFO:root:Duplicate values:
+['Full Time', 'Part Time']
+INFO:root:
+Column: Date of Joining - 331 duplicates
+INFO:root:Duplicate values:
+[Timestamp('2019-12-06 00:00:00'), Timestamp('2020-01-22 00:00:00'), Timestamp('2020-02-17 00:00:00'), Timestamp('2021-11-18 00:00:00'), Timestamp('2021-11-22 00:00:00'), Timestamp('2022-08-12 00:00:00'), Timestamp('2022-09-14 00:00:00'), Timestamp('2022-09-15 00:00:00'), Timestamp('2022-09-26 00:00:00'), Timestamp('2022-09-30 00:00:00'), Timestamp('2022-10-03 00:00:00'), Timestamp('2023-09-13 00:00:00'), Timestamp('2023-09-15 00:00:00'), Timestamp('2024-09-23 00:00:00'), Timestamp('2024-09-24 00:00:00'), Timestamp('2024-10-01 00:00:00'), Timestamp('2024-10-21 00:00:00'), Timestamp('2019-12-21 00:00:00'), Timestamp('2020-01-20 00:00:00'), Timestamp('2022-08-29 00:00:00'), Timestamp('2022-09-19 00:00:00'), Timestamp('2022-09-16 00:00:00'), Timestamp('2022-09-28 00:00:00'), Timestamp('2022-03-02 00:00:00'), Timestamp('2023-09-14 00:00:00'), Timestamp('2024-02-27 00:00:00'), Timestamp('2024-03-06 00:00:00'), Timestamp('2017-03-30 00:00:00'), Timestamp('2017-10-10 00:00:00'), Timestamp('2020-02-10 00:00:00'), Timestamp('2020-02-11 00:00:00'), Timestamp('2019-04-09 00:00:00'), Timestamp('2022-01-11 00:00:00'), Timestamp('2022-01-14 00:00:00'), Timestamp('2021-09-15 00:00:00'), Timestamp('2022-09-20 00:00:00'), Timestamp('2023-09-18 00:00:00'), Timestamp('2023-10-12 00:00:00'), Timestamp('2024-09-26 00:00:00'), Timestamp('2021-12-07 00:00:00'), Timestamp('2022-12-28 00:00:00'), Timestamp('2023-10-13 00:00:00'), Timestamp('2020-01-23 00:00:00'), Timestamp('2019-12-12 00:00:00'), Timestamp('2022-10-10 00:00:00'), Timestamp('2018-07-26 00:00:00'), Timestamp('2020-02-18 00:00:00'), Timestamp('2020-02-27 00:00:00'), Timestamp('2021-12-08 00:00:00'), Timestamp('2022-09-02 00:00:00'), Timestamp('2021-12-09 00:00:00'), Timestamp('2021-12-10 00:00:00'), Timestamp('2022-02-28 00:00:00'), Timestamp('2019-12-18 00:00:00'), Timestamp('2021-11-17 00:00:00'), Timestamp('2022-10-20 00:00:00'), Timestamp('2024-05-20 00:00:00'), Timestamp('2018-07-25 00:00:00'), Timestamp('2020-01-21 00:00:00'), Timestamp('2020-03-03 00:00:00'), Timestamp('2021-12-16 00:00:00'), Timestamp('2021-12-20 00:00:00'), Timestamp('2019-04-08 00:00:00'), Timestamp('2017-11-27 00:00:00')]
+INFO:root:
+Column: Admission Category - 485 duplicates
+INFO:root:Duplicate values:
+['Institute Fellowship', 'Open', 'Self Financed', 'Inspire DST Project', 'Sponsored', 'TEQIP Faculty', 'QIP', 'Sponsored Project', 'Ph.D. Internal', 'DST INSPIRE']
+INFO:root:
+Column: Supervisor - 363 duplicates
+INFO:root:Duplicate values:
+['Mushtaq Ahmad Rather', 'Tanveer Rasool ', 'Faisal Qayoom Mir', 'Malik Parveez', 'Kurella Swamy', 'Shashikant Kumar', 'Moiz Khan ', 'Fatima Jalid', 'Asma Iqbal', 'Tabassum Ara', 'Ravi Kumar', 'Javid Ahmad Banday ', 'Kowsar Majid', 'Shrikant S Maktedar', 'Jignesh V Rohit', 'Mohammad Aslam', 'S A Shah ', 'Hamida-Tun-Nisa- Chisti', 'Manzoor Ahmad Tantray', 'Javaid Ahmad Bhat', 'S Kaiser Bukhari', 'Manzoor Ahmad Ahanger', 'Mohammad Shafi Mir', 'S R Shah', 'Mohammad Yousuf Shah', 'Shakeel Ahmad Waseem', 'Fayaz Ahmad Sofi', 'Abdullah Ahmad', 'Bashir Ahmad Mir', 'Sandeep Samantaray', 'Parmaeshwar H', 'Abdul Qayoom Dar', 'R Sagadevan', 'Dasari Karthik', 'Vivek ', 'Majid Hussain', 'Jitendra Gurjar', 'Janani L', 'R P Shukla', 'Valliboina Venkateswarlu', 'Shaima Qureshi', 'Roohie Naaz Mir', 'Veningston K ', 'Mohammad Ahsan Chishti', 'Tawseef Ayoub Shaikh', 'Pramod Kumar', 'Sparsh Sharma', 'Lavanya Madhuri Bollipo', 'Sheikh Javed Iqbal', 'Abdul Hamid Bhat', 'M A Bazaz', 'Shameem Ahmad Lone', 'Mairaj Ud Din Mufti', 'Farhad Ilahi Bakhsh', 'Kushal M Jagtap', 'Aijaz Ahmad Zargar', 'Asad Ur Rahman', 'Hareesh Myneni', 'A.H Mir', 'Gausia Qazi', 'Shahid Mehraj', 'Amandeep Singh Rehal', 'G R Begh', 'Sheikh Amir Ahsan', 'Farida Khurshid', 'Najeeb Ud Din', 'Brajendra Singh Sengar', 'Burhan Khursheed', 'Ashok Kumar', 'Amit Kumar', 'Jaya Shrivastava', 'Tahir Ahmad Wani', 'Nasir Faried Butt ', 'Mohammad Rafiq Teli', 'Sumaira Jan', 'Nufazil Altaf Ahanger', 'Ajaz Ul Islam', 'Shahnawaz Ahmed', 'Anil Singhal', 'Shabir Ahmad Sofi ', 'Prabal Verma', 'Janibul Bashir', 'Iqra Altaf Geelani', 'Abdul Liman', 'Zamrooda Jabeen', 'Tanweer Jalal', 'Neyaz Ahmad', 'Bilal Ahmad', 'Owais Ahmad ', 'Atendra Kumar', 'M.S. Charoo', 'Mohammad Mursaleen ', 'Babar Ahmad', 'Mohammad Mohsin Khan', 'Sheikh Shahid Saleem', 'Harveer Sing Pali', 'G. A. Harmain', 'Adnan Qayoum', 'Mukhund Dat Sharma ', 'Sandeep Rathee', 'Deepak Kumar Naik', 'Noor Zaman Khan', 'Ved Prakash Sharma', 'Manoj Kumar', 'Azher Jameel', 'Atikur Rehman', 'Yashwant Mehta', 'Srinibash Mishra', 'Anshul Gupta ', 'Pravan K Katiyar', 'Seemin Rubab', 'Harkirat Singh', 'Vijay Kumar', 'Mohd Ikram', 'Mohammad Zubair Ansari', 'Prince Ahmad Ganai', 'M A Shah']
+INFO:root:
+Column: Co-supervisor - 408 duplicates
+INFO:root:Duplicate values:
+['Manzoor Ahmad Tantray', 'Shakeel Ahmad Waseem', 'Saifullah Lone', 'S A Shah ', 'Javid Ahmad Banday ', 'Tabassum Ara', 'Mohammad Aslam', 'Shrikant S Maktedar', 'Faisal Qayoom Mir', 'Javaid Ahmad Bhat', 'Khalid Muzamil Gani', 'Jitendra Gurjar', 'Shahid Mehraj', 'Mairaj Ud Din Mufti', 'Ikhlaq Hussain', 'Salman Ahmad, IUST, Awantipora', 'Neeraj Gupta', 'G R Begh', 'Janibul Bashir', 'Prabal Verma ', 'Idrees Qasim', 'Kowsar Majid', 'Abhijit Dey', 'G. A. Harmain', 'Mohammad Mursaleen', 'Sheikh Shahid Saleem', 'Malik Abdul Waheed, CUOK', 'M A Shah', 'Muzzafar Qadir Lone, University of Kashmir']
+INFO:root:
+--- Unique Entries (Column-wise) ---
+INFO:root:
+Column: Name of the Research Scholar - 507 unique values
+INFO:root:Values: ['Uzma Imtiyaz' 'Nimaan Imtiyaz' 'Fayaz Doobi' 'Gowhar Afzal'
+ 'Massarat Majeed' 'Suhail Shafi Lone' 'Firdous Ahmad Dar' 'Shahida Khan'
+ 'Jyotendra Nath' 'Tabasum Ali'] ...
+INFO:root:
+Column: Department - 12 unique values
+INFO:root:Values: ['Chemical Engineering' 'Chemistry' 'Civil Engineering'
+ 'Computer Science and Engineering' 'Electrical Engineering'
+ 'Electronics and Communication Engineering'
+ 'Humanities Social Sciences and Management' 'Information Technology'
+ 'Mathematics' 'Mechanical Engineering'] ...
+INFO:root:
+Column: Enrolment No. - 508 unique values
+INFO:root:Values: ['2019PHACHE006' '2019PHACHE007' '2019PHACHE009' '2019PHACHE011'
+ '2019PHACHE012' '2019PHACHE013' '2019PHACHE015' '2019PHACHE016'
+ '2019PHSCHE004' '2021PHACHE001'] ...
+INFO:root:
+Column: Mail ID - 376 unique values
+INFO:root:Values: ['nimaanmattoo94@gmail.com' 'ahmadfayaz264@gmail.com'
+ 'gowharafzal841@gmail.com' 'massarat663@gmail.com'
+ 'suhailshafilone@gmail.com' 'darfirdous4@gmail.com'
+ 'shaibakhan321@gmail.com' 'jyotendranath@gmail.com'
+ 'tabasum831@gmail.com' 'rafia.jan099@gmail.com'] ...
+INFO:root:
+Column: Contact Number - 375 unique values
+INFO:root:Values: [7.78092181e+09 9.68234187e+09 8.82505466e+09 6.00616601e+09
+ 7.00660490e+09 7.00645818e+09 7.00677218e+09 9.60879336e+09
+ 9.14986474e+09 7.00656605e+09] ...
+INFO:root:
+Column: Registration No - 505 unique values
+INFO:root:Values: ['2019NITSGR0901' '2019NITSGR0917' '2019NITSGR0963' '2019NITSGR0966'
+ '2019NITSGR0967' '2019NITSGR0973' '2019NITSGR1047' '2019NITSGR0031'
+ '2021NITSGR0232' '2021NITSGR0239'] ...
+INFO:root:
+Column: Batch - 11 unique values
+INFO:root:Values: [2019 2021 2022 2023 2024 2018 2020 2017 2025 2015] ...
+INFO:root:
+Column: Gender - 2 unique values
+INFO:root:Values: ['Female' 'Male']
+INFO:root:
+Column: Full Time/Part Time - 2 unique values
+INFO:root:Values: ['Full Time' 'Part Time']
+INFO:root:
+Column: Date of Joining - 177 unique values
+INFO:root:Values: <DatetimeArray>
+['2019-12-06 00:00:00', '2020-01-22 00:00:00', '2020-02-17 00:00:00',
+ '2019-04-12 00:00:00', '2021-11-18 00:00:00', '2021-11-22 00:00:00',
+ '2022-08-12 00:00:00', '2022-09-14 00:00:00', '2022-09-15 00:00:00',
+ '2022-09-26 00:00:00']
+Length: 10, dtype: datetime64[ns] ...
+INFO:root:
+Column: Admission Category - 23 unique values
+INFO:root:Values: ['Institute Fellowship' 'Open' 'Self Financed' 'Inspire DST Project'
+ 'Sponsored' 'Sponsored- Inspire Fellow' 'Open (Sponsord)' 'TEQIP Faculty'
+ 'QIP' 'SPONSORED'] ...
+INFO:root:
+Column: Supervisor - 145 unique values
+INFO:root:Values: ['Mushtaq Ahmad Rather' 'Tanveer Rasool ' 'Faisal Qayoom Mir'
+ 'Malik Parveez' 'Kurella Swamy' 'Shashikant Kumar'
+ 'Mohammad Noor Salam Khan' 'Brajesh Kumar' 'Moiz Khan ' 'Fatima Jalid'] ...
+INFO:root:
+Column: Co-supervisor - 99 unique values
+INFO:root:Values: ['Manzoor Ahmad Tantray' 'Vijay Kumar' 'Asif Hussain Shah, CUOK'
+ 'Leela Mahanhor, NIT Wrangal ' 'Riyaz Ahmad Mir, NIH, Roorke'
+ 'Jignesh Kumar V. Rohit' 'Shakeel Ahmad Waseem' 'Asma Iqbal'
+ 'Fatima Jalid' 'Parmaeshwar H'] ...
+INFO:root:
+--- Null Entries (Column-wise) ---
+INFO:root:Name of the Research Scholar: 0
+INFO:root:Department: 0
+INFO:root:Enrolment No.: 0
+INFO:root:Mail ID: 132
+INFO:root:Contact Number: 133
+INFO:root:Registration No: 0
+INFO:root:Batch: 0
+INFO:root:Gender: 0
+INFO:root:Full Time/Part Time: 0
+INFO:root:Date of Joining: 0
+INFO:root:Admission Category: 0
+INFO:root:Supervisor: 0
+INFO:root:Co-supervisor: 0
+INFO:root:
+--- Duplicate Entries (Column-wise) ---
+INFO:root:
+Column: Name of the Research Scholar - 1 duplicates
+INFO:root:Duplicate values:
+['Misba Jan']
+INFO:root:
+Column: Department - 496 duplicates
+INFO:root:Duplicate values:
+['Chemical Engineering', 'Chemistry', 'Civil Engineering', 'Computer Science and Engineering', 'Electrical Engineering', 'Electronics and Communication Engineering', 'Humanities Social Sciences and Management', 'Information Technology', 'Mathematics', 'Mechanical Engineering', 'Materials and Metallurgical Engineering', 'Physics']
+INFO:root:
+Column: Mail ID - 131 duplicates
+INFO:root:Duplicate values:
+[]
+INFO:root:
+Column: Contact Number - 132 duplicates
+INFO:root:Duplicate values:
+[]
+INFO:root:
+Column: Registration No - 3 duplicates
+INFO:root:Duplicate values:
+['2019NITSGR0973', '2023NITSGR0001']
+INFO:root:
+Column: Batch - 497 duplicates
+INFO:root:Duplicate values:
+[2019, 2021, 2022, 2023, 2024, 2018, 2020, 2017, 2025]
+INFO:root:
+Column: Gender - 506 duplicates
+INFO:root:Duplicate values:
+['Female', 'Male']
+INFO:root:
+Column: Full Time/Part Time - 506 duplicates
+INFO:root:Duplicate values:
+['Full Time', 'Part Time']
+INFO:root:
+Column: Date of Joining - 331 duplicates
+INFO:root:Duplicate values:
+[Timestamp('2019-12-06 00:00:00'), Timestamp('2020-01-22 00:00:00'), Timestamp('2020-02-17 00:00:00'), Timestamp('2021-11-18 00:00:00'), Timestamp('2021-11-22 00:00:00'), Timestamp('2022-08-12 00:00:00'), Timestamp('2022-09-14 00:00:00'), Timestamp('2022-09-15 00:00:00'), Timestamp('2022-09-26 00:00:00'), Timestamp('2022-09-30 00:00:00'), Timestamp('2022-10-03 00:00:00'), Timestamp('2023-09-13 00:00:00'), Timestamp('2023-09-15 00:00:00'), Timestamp('2024-09-23 00:00:00'), Timestamp('2024-09-24 00:00:00'), Timestamp('2024-10-01 00:00:00'), Timestamp('2024-10-21 00:00:00'), Timestamp('2019-12-21 00:00:00'), Timestamp('2020-01-20 00:00:00'), Timestamp('2022-08-29 00:00:00'), Timestamp('2022-09-19 00:00:00'), Timestamp('2022-09-16 00:00:00'), Timestamp('2022-09-28 00:00:00'), Timestamp('2022-03-02 00:00:00'), Timestamp('2023-09-14 00:00:00'), Timestamp('2024-02-27 00:00:00'), Timestamp('2024-03-06 00:00:00'), Timestamp('2017-03-30 00:00:00'), Timestamp('2017-10-10 00:00:00'), Timestamp('2020-02-10 00:00:00'), Timestamp('2020-02-11 00:00:00'), Timestamp('2019-04-09 00:00:00'), Timestamp('2022-01-11 00:00:00'), Timestamp('2022-01-14 00:00:00'), Timestamp('2021-09-15 00:00:00'), Timestamp('2022-09-20 00:00:00'), Timestamp('2023-09-18 00:00:00'), Timestamp('2023-10-12 00:00:00'), Timestamp('2024-09-26 00:00:00'), Timestamp('2021-12-07 00:00:00'), Timestamp('2022-12-28 00:00:00'), Timestamp('2023-10-13 00:00:00'), Timestamp('2020-01-23 00:00:00'), Timestamp('2019-12-12 00:00:00'), Timestamp('2022-10-10 00:00:00'), Timestamp('2018-07-26 00:00:00'), Timestamp('2020-02-18 00:00:00'), Timestamp('2020-02-27 00:00:00'), Timestamp('2021-12-08 00:00:00'), Timestamp('2022-09-02 00:00:00'), Timestamp('2021-12-09 00:00:00'), Timestamp('2021-12-10 00:00:00'), Timestamp('2022-02-28 00:00:00'), Timestamp('2019-12-18 00:00:00'), Timestamp('2021-11-17 00:00:00'), Timestamp('2022-10-20 00:00:00'), Timestamp('2024-05-20 00:00:00'), Timestamp('2018-07-25 00:00:00'), Timestamp('2020-01-21 00:00:00'), Timestamp('2020-03-03 00:00:00'), Timestamp('2021-12-16 00:00:00'), Timestamp('2021-12-20 00:00:00'), Timestamp('2019-04-08 00:00:00'), Timestamp('2017-11-27 00:00:00')]
+INFO:root:
+Column: Admission Category - 485 duplicates
+INFO:root:Duplicate values:
+['Institute Fellowship', 'Open', 'Self Financed', 'Inspire DST Project', 'Sponsored', 'TEQIP Faculty', 'QIP', 'Sponsored Project', 'Ph.D. Internal', 'DST INSPIRE']
+INFO:root:
+Column: Supervisor - 363 duplicates
+INFO:root:Duplicate values:
+['Mushtaq Ahmad Rather', 'Tanveer Rasool ', 'Faisal Qayoom Mir', 'Malik Parveez', 'Kurella Swamy', 'Shashikant Kumar', 'Moiz Khan ', 'Fatima Jalid', 'Asma Iqbal', 'Tabassum Ara', 'Ravi Kumar', 'Javid Ahmad Banday ', 'Kowsar Majid', 'Shrikant S Maktedar', 'Jignesh V Rohit', 'Mohammad Aslam', 'S A Shah ', 'Hamida-Tun-Nisa- Chisti', 'Manzoor Ahmad Tantray', 'Javaid Ahmad Bhat', 'S Kaiser Bukhari', 'Manzoor Ahmad Ahanger', 'Mohammad Shafi Mir', 'S R Shah', 'Mohammad Yousuf Shah', 'Shakeel Ahmad Waseem', 'Fayaz Ahmad Sofi', 'Abdullah Ahmad', 'Bashir Ahmad Mir', 'Sandeep Samantaray', 'Parmaeshwar H', 'Abdul Qayoom Dar', 'R Sagadevan', 'Dasari Karthik', 'Vivek ', 'Majid Hussain', 'Jitendra Gurjar', 'Janani L', 'R P Shukla', 'Valliboina Venkateswarlu', 'Shaima Qureshi', 'Roohie Naaz Mir', 'Veningston K ', 'Mohammad Ahsan Chishti', 'Tawseef Ayoub Shaikh', 'Pramod Kumar', 'Sparsh Sharma', 'Lavanya Madhuri Bollipo', 'Sheikh Javed Iqbal', 'Abdul Hamid Bhat', 'M A Bazaz', 'Shameem Ahmad Lone', 'Mairaj Ud Din Mufti', 'Farhad Ilahi Bakhsh', 'Kushal M Jagtap', 'Aijaz Ahmad Zargar', 'Asad Ur Rahman', 'Hareesh Myneni', 'A.H Mir', 'Gausia Qazi', 'Shahid Mehraj', 'Amandeep Singh Rehal', 'G R Begh', 'Sheikh Amir Ahsan', 'Farida Khurshid', 'Najeeb Ud Din', 'Brajendra Singh Sengar', 'Burhan Khursheed', 'Ashok Kumar', 'Amit Kumar', 'Jaya Shrivastava', 'Tahir Ahmad Wani', 'Nasir Faried Butt ', 'Mohammad Rafiq Teli', 'Sumaira Jan', 'Nufazil Altaf Ahanger', 'Ajaz Ul Islam', 'Shahnawaz Ahmed', 'Anil Singhal', 'Shabir Ahmad Sofi ', 'Prabal Verma', 'Janibul Bashir', 'Iqra Altaf Geelani', 'Abdul Liman', 'Zamrooda Jabeen', 'Tanweer Jalal', 'Neyaz Ahmad', 'Bilal Ahmad', 'Owais Ahmad ', 'Atendra Kumar', 'M.S. Charoo', 'Mohammad Mursaleen ', 'Babar Ahmad', 'Mohammad Mohsin Khan', 'Sheikh Shahid Saleem', 'Harveer Sing Pali', 'G. A. Harmain', 'Adnan Qayoum', 'Mukhund Dat Sharma ', 'Sandeep Rathee', 'Deepak Kumar Naik', 'Noor Zaman Khan', 'Ved Prakash Sharma', 'Manoj Kumar', 'Azher Jameel', 'Atikur Rehman', 'Yashwant Mehta', 'Srinibash Mishra', 'Anshul Gupta ', 'Pravan K Katiyar', 'Seemin Rubab', 'Harkirat Singh', 'Vijay Kumar', 'Mohd Ikram', 'Mohammad Zubair Ansari', 'Prince Ahmad Ganai', 'M A Shah']
+INFO:root:
+Column: Co-supervisor - 408 duplicates
+INFO:root:Duplicate values:
+['nan', 'Manzoor Ahmad Tantray', 'Shakeel Ahmad Waseem', 'Saifullah Lone', 'S A Shah ', 'Javid Ahmad Banday ', 'Tabassum Ara', 'Mohammad Aslam', 'Shrikant S Maktedar', 'Faisal Qayoom Mir', 'Javaid Ahmad Bhat', 'Khalid Muzamil Gani', 'Jitendra Gurjar', 'Shahid Mehraj', 'Mairaj Ud Din Mufti', 'Ikhlaq Hussain', 'Salman Ahmad, IUST, Awantipora', 'Neeraj Gupta', 'G R Begh', 'Janibul Bashir', 'Prabal Verma ', 'Idrees Qasim', 'Kowsar Majid', 'Abhijit Dey', 'G. A. Harmain', 'Mohammad Mursaleen', 'Sheikh Shahid Saleem', 'Malik Abdul Waheed, CUOK', 'M A Shah', 'Muzzafar Qadir Lone, University of Kashmir']
+INFO:root:
+--- Unique Entries (Column-wise) ---
+INFO:root:
+Column: Name of the Research Scholar - 507 unique values
+INFO:root:Values: ['Uzma Imtiyaz' 'Nimaan Imtiyaz' 'Fayaz Doobi' 'Gowhar Afzal'
+ 'Massarat Majeed' 'Suhail Shafi Lone' 'Firdous Ahmad Dar' 'Shahida Khan'
+ 'Jyotendra Nath' 'Tabasum Ali'] ...
+INFO:root:
+Column: Department - 12 unique values
+INFO:root:Values: ['Chemical Engineering' 'Chemistry' 'Civil Engineering'
+ 'Computer Science and Engineering' 'Electrical Engineering'
+ 'Electronics and Communication Engineering'
+ 'Humanities Social Sciences and Management' 'Information Technology'
+ 'Mathematics' 'Mechanical Engineering'] ...
+INFO:root:
+Column: Enrolment No. - 508 unique values
+INFO:root:Values: ['2019PHACHE006' '2019PHACHE007' '2019PHACHE009' '2019PHACHE011'
+ '2019PHACHE012' '2019PHACHE013' '2019PHACHE015' '2019PHACHE016'
+ '2019PHSCHE004' '2021PHACHE001'] ...
+INFO:root:
+Column: Mail ID - 376 unique values
+INFO:root:Values: ['nimaanmattoo94@gmail.com' 'ahmadfayaz264@gmail.com'
+ 'gowharafzal841@gmail.com' 'massarat663@gmail.com'
+ 'suhailshafilone@gmail.com' 'darfirdous4@gmail.com'
+ 'shaibakhan321@gmail.com' 'jyotendranath@gmail.com'
+ 'tabasum831@gmail.com' 'rafia.jan099@gmail.com'] ...
+INFO:root:
+Column: Contact Number - 375 unique values
+INFO:root:Values: [7.78092181e+09 9.68234187e+09 8.82505466e+09 6.00616601e+09
+ 7.00660490e+09 7.00645818e+09 7.00677218e+09 9.60879336e+09
+ 9.14986474e+09 7.00656605e+09] ...
+INFO:root:
+Column: Registration No - 505 unique values
+INFO:root:Values: ['2019NITSGR0901' '2019NITSGR0917' '2019NITSGR0963' '2019NITSGR0966'
+ '2019NITSGR0967' '2019NITSGR0973' '2019NITSGR1047' '2019NITSGR0031'
+ '2021NITSGR0232' '2021NITSGR0239'] ...
+INFO:root:
+Column: Batch - 11 unique values
+INFO:root:Values: [2019 2021 2022 2023 2024 2018 2020 2017 2025 2015] ...
+INFO:root:
+Column: Gender - 2 unique values
+INFO:root:Values: ['Female' 'Male']
+INFO:root:
+Column: Full Time/Part Time - 2 unique values
+INFO:root:Values: ['Full Time' 'Part Time']
+INFO:root:
+Column: Date of Joining - 177 unique values
+INFO:root:Values: <DatetimeArray>
+['2019-12-06 00:00:00', '2020-01-22 00:00:00', '2020-02-17 00:00:00',
+ '2019-04-12 00:00:00', '2021-11-18 00:00:00', '2021-11-22 00:00:00',
+ '2022-08-12 00:00:00', '2022-09-14 00:00:00', '2022-09-15 00:00:00',
+ '2022-09-26 00:00:00']
+Length: 10, dtype: datetime64[ns] ...
+INFO:root:
+Column: Admission Category - 23 unique values
+INFO:root:Values: ['Institute Fellowship' 'Open' 'Self Financed' 'Inspire DST Project'
+ 'Sponsored' 'Sponsored- Inspire Fellow' 'Open (Sponsord)' 'TEQIP Faculty'
+ 'QIP' 'SPONSORED'] ...
+INFO:root:
+Column: Supervisor - 145 unique values
+INFO:root:Values: ['Mushtaq Ahmad Rather' 'Tanveer Rasool ' 'Faisal Qayoom Mir'
+ 'Malik Parveez' 'Kurella Swamy' 'Shashikant Kumar'
+ 'Mohammad Noor Salam Khan' 'Brajesh Kumar' 'Moiz Khan ' 'Fatima Jalid'] ...
+INFO:root:
+Column: Co-supervisor - 100 unique values
+INFO:root:Values: ['nan' 'Manzoor Ahmad Tantray' 'Vijay Kumar' 'Asif Hussain Shah, CUOK'
+ 'Leela Mahanhor, NIT Wrangal ' 'Riyaz Ahmad Mir, NIH, Roorke'
+ 'Jignesh Kumar V. Rohit' 'Shakeel Ahmad Waseem' 'Asma Iqbal'
+ 'Fatima Jalid'] ...
